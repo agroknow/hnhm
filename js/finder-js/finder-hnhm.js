@@ -957,7 +957,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                              
                                              Jaml.register('result', function(data){
                                                            
-                                                           var keywordsToEmbed = "";
+                                                           var keywordsToEmbed = "malakia";
                                                            
                                                            
                                                            var odd = "";
@@ -981,15 +981,28 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            }//end for
                                                            }//end if
                                                            
+                                                           var imgThumb = data.format;
+                                                           if(data.contentType.toUpperCase() == 'IMAGE')
+                                                           {
+                                                           imgThumb = data.objectUri;
+                                                           }
+                                                           
+                                                           var thisRights = data.licenseUri;
+                                                           if(data.licenseUri==undefined){thisRights == "undefined";}
+                                                           
+                                                           var thisRights2 = data.rights;
+                                                           if(data.rights==undefined){thisRights2 == "undefined";}
                                                            
                                                            article({class:'item-intro '+odd},
                                                                    header(
-                                                                          h2(img({src:data.format}),
+                                                                          h2(img({src:imgThumb}),
                                                                              a({href:data.location,title: data.title, target: '_blank'},data.title)),
                                                                           section(p({cls:'item-intro-desc'}, data.description),
                                                                                   aside({cls:'clearfix'},
                                                                                         div({cls:'floatleft'},
                                                                                             div({cls:'line keywords'}, span("Keywords:"), keywordsToEmbed)),
+                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights),
+                                                                                        div({cls:'language'}, span("Rights:"), thisRights2),
                                                                                         div({cls:'floatright'},
                                                                                             div({cls:'line alignright'}, a({href:"item.html?id="+data.identifier, cls:'moreinfo'}, "More Info")))))))
                                                            });
@@ -1002,7 +1015,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            //               odd++;
                                                            //               var backgroundClass = ""
                                                            //               if(odd%2===0){backgroundClass = "odd";}
-                                                           var keywordsToEmbed = "";
+                                                           var keywordsToEmbed = "malakia 2";
                                                            
                                                            var odd = "";
                                                            if(data.isOdd%2===1){odd="odd"}
@@ -1026,12 +1039,27 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            }//end for
                                                            }//end if
                                                            
+                                                           var imgThumb = data.format;
+                                                           if(data.contentType.toUpperCase() == 'IMAGE')
+                                                           {
+                                                           imgThumb = data.objectUri;
+                                                           }
+                                                           
+                                                           var thisRights = data.licenseUri;
+                                                           if(data.licenseUri==undefined){thisRights == "undefined";}
+                                                           
+                                                           var thisRights2 = data.rights;
+                                                           if(data.rights==undefined){thisRights2 == "undefined";}
+
+                                                           
                                                            article({class:'item-intro ' +odd },
                                                                    header(
-                                                                          h2(img({src:data.format}),
+                                                                          h2(img({src:imgThumb}),
                                                                              a({href:data.objectUri, title: data.thisTitle.value, target: '_blank'},data.thisTitle.value)),
                                                                           section(p({cls:'item-intro-desc'}, data.thisDescription.value),
                                                                                   aside({cls:'clearfix'},
+                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights),
+                                                                                        div({cls:'language'}, span("Rights:"), thisRights2),
                                                                                         div({cls:'floatright'},
                                                                                             div({cls:'line alignright'}, a({href:"item.html?id="+data.id, cls:'moreinfo'}, "More Info")))))))});
                                              
@@ -1065,7 +1093,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                              
                                              
                                              
-                                             Jaml.register('rbcriteria', function(data)
+                                             Jaml.register('rbcriteria', function(data) //language facet
                                                            {
                                                            
                                                            
@@ -1080,8 +1108,10 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            });
                                              
                                              
-                                             Jaml.register('rbcriteria2', function(data)
+                                             Jaml.register('rbcriteria2', function(data) //rest facets
                                                            {
+                                                           
+                                        
                                                            a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val, parent: data.field})}, span(langName[data.val]), span({cls:'total'}, data.count ));
                                                            
                                                            //              li({id: data.field + ':' + data.val},

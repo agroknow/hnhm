@@ -856,10 +856,11 @@ body.innerpage #main {
 
 .filter_parent
 {
-	line-height:25px;
+	line-height:40px;
+    height:40px;
     color:#004871;
     font-weight:bold;
-    background:url(images/parent_close.png)  left center no-repeat;
+    background:url(images/parent_close.png) left center no-repeat;
     border-bottom: 1px solid  #c5c7bc;
 }
 
@@ -877,7 +878,7 @@ body.innerpage #main {
 .filter_parent.opened
 {
     color:#ffde5d;
-    background:url(images/parent_opened.png)  left center no-repeat;
+    background:url(images/parent_opened.png)  left center no-repeat #026e4b;
 }
 
 .filter_parent span {
@@ -932,22 +933,22 @@ body.innerpage #main {
 
 .filter_child span.total
 {
-    color:white;
-	position:absolute;
-	height:16px;
-	width:25px;
-	right:0;
-	top:0;
-	line-height:16px;
-	margin:7px 5px 0 0;
-	padding:0px 8px;
-	border:1px solid #005238;
-	-webkit-border-radius:4px;
+    background-color: #006E4B;
+    border: 1px solid #005238;
+    border-radius: 4px 4px 4px 4px;
+    color: white;
+    font-weight: normal;
+    height: 16px;
+    line-height: 16px;
+    margin: 7px 5px;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 40px;	-webkit-border-radius:4px;
 	-moz-border-radius:4px;
 	border-radius:4px;
-	background-color:#006e4b;
-	font-weight:normal;
-	text-align:center;
 }
 
 .filter_child a.facet-selected span.total
@@ -1081,7 +1082,9 @@ body.innerpage #main {
 }
 
 .item-intro h2 img{
-    height:20px;
+    float:left;
+    width:80px;
+    margin: 5px 13px 5px 0px;
 }
 
 .item-intro h3 {
@@ -1772,6 +1775,14 @@ a.disabled {
 }
 
 
+.leftSidebarInfo ul li .titlesOnLeft{
+    padding: 5px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
+    font-size:20px;
+    line-height:50px;
+    border-top:1px solid gray;
+    
+}
 
 .itemsMedia
 {

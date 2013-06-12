@@ -174,8 +174,28 @@ function getItemJSONP(itemID)
                 document.getElementById('item_language').innerHTML = record.language ;
                 //-//Copyrights
                 document.getElementById('item_copyrights').innerHTML = record.rights ;
+                
+                
                 //-//Creative Common License
                 document.getElementById('item_common_license').innerHTML = record.licenseUri ;
+                ////
+                if(record.licenseUri.search("licenses/by-nc-sa")>=0){
+                jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc-sa.png"></a></nav>');
+                }else if(record.licenseUri.search("licenses/by-nc-nd")>=0){
+                jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc-nd.png"></a></nav>');
+                }else if(record.licenseUri.search("licenses/by-nd")>=0){
+                jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nd.png"></a></nav>');
+                }else if(record.licenseUri.search("licenses/by-sa")>=0){
+                jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-sa.png"></a></nav>');
+                }else if(record.licenseUri.search("licenses/by-nc")>=0){
+                jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc.png"></a></nav>');
+                }else if(record.licenseUri.search("licenses/by")>=0){
+                jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by.png"></a></nav>');
+                
+                }else{
+                jQuery('#item_common_license').append('<span>Rights: </span><nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank">'+record.licenseUri+'</a></nav>');
+                }
+                ////
                 //-//Relation
                 document.getElementById('item_relation').innerHTML = record.relation ;
                 
