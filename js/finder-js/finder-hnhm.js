@@ -403,7 +403,7 @@ function parseQueryString(initUpdate){
         var key = getUrlVars()["keyword"];
         var context = getUrlVars()["context"];
         var urlSelectedProviders = getUrlVars()["providers"];
-        
+
         if (lrt) {
             lrt = lrt.replace("#","").replace("%20", " ");
             clauses.push({language:'anyOf',expression:'lrt:'+ lrt});
@@ -545,7 +545,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   item.isOdd = oddCtr;
                                                                   
                                                                   //alert(JSON.stringify(item));
-                                                                  
+                                                                  if(item.format!=undefined){
                                                                   if (item.format.indexOf('pdf') != -1)
                                                                   item.format='images/icons/pdf.png';
                                                                   else if (item.format.indexOf('powerpoint') != -1)
@@ -570,6 +570,9 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   item.format='images/icons/application.png';
                                                                   else
                                                                   item.format='images/icons/application.png';
+                                                                  
+                                                                  }
+                                                                  
                                                                   
                                                                  
                                                                   for(i=0,tmpSize=item.description.length;i<tmpSize;i++)
