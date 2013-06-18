@@ -12,11 +12,12 @@ function getItemJSONP(itemID)
                 success: function(data)
                 {
                 
-                //alert(data);
+                
                 
                 //parse array and create an JS Object Array
                 //every item is a JSON
                 var thisJson = JSON.stringify(data);
+                alert(thisJson);
                 var tmp = JSON.parse(thisJson);
                 var record = tmp.result.metadata[0];
                 
