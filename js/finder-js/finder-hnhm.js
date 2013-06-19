@@ -50,7 +50,8 @@ var FACET_LABELS = {};
 
 var SELECTED_LANGUAGE = "en";
 
-FACET_LABELS['provider'] = 'Collections';
+FACET_LABELS['provider'] = 'Providers';
+FACET_LABELS['collection'] = 'Collections';
 FACET_LABELS['language'] = 'Language';
 FACET_LABELS['format'] = 'Media type';
 FACET_LABELS['keyword'] = 'By Tags';
@@ -206,7 +207,7 @@ function initializeFinder(){
 		for (var i=0;i<FACET_TOKENS.length;i++)
         {
 			var fn = FACET_TOKENS[i];
-			div.push('<a href="#" id="'+fn+'" onclick="return false;" class="filter_parent opened"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child" style="display: block; overflow: hidden;height:auto;"></div>');
+			div.push('<a href="#" id="'+fn+'" onclick="return false;" class="filter_parent"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child" style="display: none; overflow: hidden;height:auto;"></div>');
 			
 		}
         
@@ -403,7 +404,8 @@ function parseQueryString(initUpdate){
         var key = getUrlVars()["keyword"];
         var context = getUrlVars()["context"];
         var urlSelectedProviders = getUrlVars()["providers"];
-
+        var urlSelectedCollections = getUrlVars()["collection"];
+        
         if (lrt) {
             lrt = lrt.replace("#","").replace("%20", " ");
             clauses.push({language:'anyOf',expression:'lrt:'+ lrt});
@@ -419,6 +421,10 @@ function parseQueryString(initUpdate){
         if (urlSelectedProviders){
             urlSelectedProviders = urlSelectedProviders.replace("#","").replace("%20", " ");
             clauses.push({language:'anyOf',expression:'provider:'+urlSelectedProviders});
+        }
+        if (urlSelectedCollections) {
+            urlSelectedCollections = urlSelectedCollections.replace("#","").replace("%20", " ");
+            clauses.push({language:'anyOf',expression:'collection:'+ urlSelectedCollections});
         }
         
         //clauses.push({language:'anyOf',expression:'keyword:' + key});
