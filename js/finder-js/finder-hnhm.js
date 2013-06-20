@@ -1078,7 +1078,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                                         div({cls:'language'}, span("Creative commons licence:"), thisRights[0]),
                                                                                         div({cls:'language'}, span("Rights:"), thisRights2[0]),
                                                                                         div({cls:'floatright'},
-                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.identifier.identifier_0, cls:'moreinfo'}, "More Info")))))))});
+                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id, cls:'moreinfo'}, "More Info")))))))});
                                              
                                              
                                              
