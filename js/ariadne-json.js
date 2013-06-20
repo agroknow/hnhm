@@ -20,11 +20,15 @@ function getItemJSONP(itemID)
                 var tmp = JSON.parse(thisJson);
                 var record = tmp.result.metadata[0];
                 
+                //alert(thisJson);
                                 
                 //left_sidebar
                 
                 //-//collection
                 if(record.collectionId!=undefined){
+                if (record.collectionId.indexOf('HNHM ') != -1){
+                record.collectionId = record.collectionId.split('HNHM ')[1];
+                }
                 document.getElementById('collection').innerHTML = record.collectionId;}
                 
                 //-//classification
@@ -102,7 +106,16 @@ function getItemJSONP(itemID)
                 
                 
                 //-//language
-                document.getElementById('language').innerHTML = record.language;
+                if(record.Languages!=undefined){
+                var tempLangs = Object.keys(record.Languages);
+                for(var i=0; i <tempLangs.length; i++)
+                {
+                if(record.Languages[tempLangs[i]]!=undefined){
+                jQuery('#language').append('<span class=\"flag '+record.Languages[tempLangs[i]]+'flag\">'+record.Languages[tempLangs[i]]+'</span>');                }
+                }
+                }
+                
+                
                 
                 //--//content-type
                 document.getElementById('media_type').innerHTML = record.contentType;
@@ -124,7 +137,7 @@ function getItemJSONP(itemID)
                 for(var i=0; i<tempTitle.length;i++)
                 {
                 if(record.title[tempTitle[i]].lang =='en'){
-                jQuery('#item_title').append(record.title[tempTitle[i]].value);
+                jQuery('#item_title').append('<a class="item_title_link" href=\"'+record.objectUri+'\" target=\"_blank\">'+record.title[tempTitle[i]].value+'</a>');
                 }
                 }
                 }
@@ -171,28 +184,44 @@ function getItemJSONP(itemID)
                 }
                                 
                 //-//language
-                document.getElementById('item_language').innerHTML = record.language ;
+                if(record.Languages!=undefined){
+                var tempLangs = Object.keys(record.Languages);
+                for(var i=0; i <tempLangs.length; i++)
+                {
+                if(record.Languages[tempLangs[i]]!=undefined){
+                jQuery('#item_language').append('<span class=\"flag '+record.Languages[tempLangs[i]]+'flag\">'+record.Languages[tempLangs[i]]+'</span>');
+                }
+                }
+                }
+                
+                
                 //-//Copyrights
                 document.getElementById('item_copyrights').innerHTML = record.rights ;
                 
                 
                 //-//Creative Common License
-                document.getElementById('item_common_license').innerHTML = record.licenseUri ;
+                //document.getElementById('item_common_license').innerHTML = record.licenseUri ;
                 ////
                 if(record.licenseUri.search("licenses/by-nc-sa")>=0){
                 jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc-sa.png"></a></nav>');
-                }else if(record.licenseUri.search("licenses/by-nc-nd")>=0){
+                }
+                else if(record.licenseUri.search("licenses/by-nc-nd")>=0){
                 jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc-nd.png"></a></nav>');
-                }else if(record.licenseUri.search("licenses/by-nd")>=0){
+                }
+                else if(record.licenseUri.search("licenses/by-nd")>=0){
                 jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nd.png"></a></nav>');
-                }else if(record.licenseUri.search("licenses/by-sa")>=0){
+                }
+                else if(record.licenseUri.search("licenses/by-sa")>=0){
                 jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-sa.png"></a></nav>');
-                }else if(record.licenseUri.search("licenses/by-nc")>=0){
+                }
+                else if(record.licenseUri.search("licenses/by-nc")>=0){
                 jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc.png"></a></nav>');
-                }else if(record.licenseUri.search("licenses/by")>=0){
+                }
+                else if(record.licenseUri.search("licenses/by")>=0){
                 jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by.png"></a></nav>');
                 
-                }else{
+                }
+                else{
                 jQuery('#item_common_license').append('<span>Rights: </span><nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank">'+record.licenseUri+'</a></nav>');
                 }
                 ////
@@ -200,6 +229,12 @@ function getItemJSONP(itemID)
                 document.getElementById('item_relation').innerHTML = record.relation ;
                 
                 
+                ///----Access to the resource
+                
+                if(record.objectUri!==undefined)
+                {
+                jQuery('#itemAccess').append('<a target="_blank" href="'+record.objectUri+'" class="access  secondary">Access to the resource</a>');
+                }
                 
                 
                 

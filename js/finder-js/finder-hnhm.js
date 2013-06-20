@@ -551,35 +551,34 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   item.isOdd = oddCtr;
                                                                   
                                                                   //alert(JSON.stringify(item));
-                                                                  /**--------------------------FIRST CHANGE-----------------*/
                                                                   
-//                                                                  if(item.format!=undefined){
-//                                                                  if (item.format.indexOf('pdf') != -1)
-//                                                                  item.format='images/icons/pdf.png';
-//                                                                  else if (item.format.indexOf('powerpoint') != -1)
-//                                                                  item.format='images/icons/ppt.png';
-//                                                                  else if (item.format.indexOf('video') != -1)
-//                                                                  item.format='images/icons/video.png';
-//                                                                  else if (item.format.indexOf('zip') != -1)
-//                                                                  item.format='images/icons/zip.png';
-//                                                                  else if (item.format.indexOf('audio') != -1)
-//                                                                  item.format='images/icons/audio.png';
-//                                                                  else if ((item.format.indexOf('text') != -1) ||(item.format.indexOf('multipart') != -1) )
-//                                                                  item.format='images/icons/text.png';
-//                                                                  else if ((item.format.indexOf('xml') != -1) )
-//                                                                  item.format='images/icons/xml.png';
-//                                                                  else if (item.format.indexOf('image') != -1)
-//                                                                  item.format='images/icons/image.png';
-//                                                                  //item.format=item.thumbnailUri;
-//                                                                  //item.format=item.location;
-//                                                                  else if ((item.format.indexOf('word')!= -1) || (item.format.indexOf('wordprocessingml')!= -1))
-//                                                                  item.format='images/icons/word.png';
-//                                                                  else if ((item.format.indexOf('application')!= -1))
-//                                                                  item.format='images/icons/application.png';
-//                                                                  else
-//                                                                  item.format='images/icons/application.png';
-//                                                                  
-//                                                                  }
+                                                                  if(item.format.format_0!=undefined){
+                                                                  if (item.format.format_0.indexOf('pdf') != -1)
+                                                                  item.format='images/icons/pdf.png';
+                                                                  else if (item.format.format_0.indexOf('powerpoint') != -1)
+                                                                  item.format='images/icons/ppt.png';
+                                                                  else if (item.format.format_0.indexOf('video') != -1)
+                                                                  item.format='images/icons/video.png';
+                                                                  else if (item.format.format_0.indexOf('zip') != -1)
+                                                                  item.format='images/icons/zip.png';
+                                                                  else if (item.format.format_0.indexOf('audio') != -1)
+                                                                  item.format='images/icons/audio.png';
+                                                                  else if ((item.format.format_0.indexOf('text') != -1) ||(item.format.format_0.indexOf('multipart') != -1) )
+                                                                  item.format='images/icons/text.png';
+                                                                  else if ((item.format.format_0.indexOf('xml') != -1) )
+                                                                  item.format='images/icons/xml.png';
+                                                                  else if (item.format.format_0.indexOf('image') != -1)
+                                                                  item.format='images/icons/image.png';
+                                                                  //item.format=item.thumbnailUri;
+                                                                  //item.format=item.location;
+                                                                  else if ((item.format.format_0.indexOf('word')!= -1) || (item.format.format_0.indexOf('wordprocessingml')!= -1))
+                                                                  item.format='images/icons/word.png';
+                                                                  else if ((item.format.format_0.indexOf('application')!= -1))
+                                                                  item.format='images/icons/application.png';
+                                                                  else
+                                                                  item.format='images/icons/application.png';
+                                                                  
+                                                                  }
                                                                   
                                                                   
                                                                  
@@ -865,7 +864,6 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                              
                                              Jaml.register('thumb_pres', function(data) {
                                                            a({href: data.location,title: data.title , target: '_blank'}, img({src:data.format, height:"90", width:"80" }))
-                                                           //img({src:'http://SnapCasa.com/Get.aspx?url='+data.identifier})
                                                            });
                                              
                                              
@@ -1054,29 +1052,29 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            }//end for
                                                            }//end if
                                                            
-                                                           /*---------------------THIRD CHANGE*/
-                                                           //var imgThumb = data.format;
-//                                                           if(data.contentType.toUpperCase() == 'IMAGE')
-//                                                           {
-//                                                           imgThumb = data.objectUri;
-//                                                           }
+                                                         
+                                                           var imgThumb = data.format;
+                                                           if(data.contentType.contentType_0.toUpperCase() == 'IMAGE')
+                                                           {
+                                                           imgThumb = data.objectUri.objectUri_0;
+                                                           }
                                                            
-                                                           var thisRights = data.licenseUri.licenseUri_0;
-                                                           if(data.licenseUri.licenseUri_0==undefined){thisRights == "undefined";}
-                                                           
-                                                           var thisRights2 = data.rights.rights_0;
-                                                           if(data.rights.rights_0==undefined){thisRights2 == "undefined";}
+//                                                           var thisRights = data.licenseUri;
+//                                                           if(data.licenseUri==undefined){thisRights == "undefined";}
+//                                                           
+//                                                           var thisRights2 = data.rights;
+//                                                           if(data.rights==undefined){thisRights2 == "undefined";}
 
                                                            
 //                                                        alert(data.objectUri.objectUri_0+'@@ '+data.title[0].value+'@@ '+data.description[0].value+'@@ '+keywordsToEmbed+'@@ '+thisRights[0]+'@@ '+thisRights2[0]+'@@ '+data.identifier.identifier_0);
                                                            article({class:'item-intro ' +odd },
                                                                    header(
-                                                                          h2(//img({src:imgThumb}),
+                                                                          h2(img({src:imgThumb}),
                                                                              a({href:data.objectUri.objectUri_0, title: data.title[0].value, target: '_blank'},data.title[0].value)),
                                                                           section(p({cls:'item-intro-desc'}, data.description[0].value),
                                                                                   aside({cls:'clearfix'},
-                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights[0]),
-                                                                                        div({cls:'language'}, span("Rights:"), thisRights2[0]),
+//                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights),
+//                                                                                        div({cls:'language'}, span("Rights:"), thisRights2),
                                                                                         div({cls:'floatright'},
                                                                                             div({cls:'line alignright'}, a({href:"item.html?id="+data.id.id_0, cls:'moreinfo'}, "More Info")))))))});
                                              
@@ -1110,14 +1108,14 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                              
                                              
                                              
-                                             Jaml.register('rbcriteria', function(data) //language facet
+                                             Jaml.register('rbcriteria', function(data) //rest facets 
                                                            {
                                                            
                                                            
                                                            //###
+                                                           
+                                                           //alert(data.val);
                                                            var label = data.val;
-//                                                           if(providerName[data.val])
-//                                                           {label = providerName[data.val];}
                                                            
                                                            a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(label), span({cls:'total'}, data.count));
                                                            
@@ -1125,8 +1123,11 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            });
                                              
                                              
-                                             Jaml.register('rbcriteria2', function(data) //rest facets
+                                             Jaml.register('rbcriteria2', function(data) //language facet
                                                            {
+                                                           
+                                                           
+                                                           
                                                            
                                         
                                                            a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val, parent: data.field})}, span(langName[data.val]), span({cls:'total'}, data.count ));

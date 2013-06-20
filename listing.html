@@ -106,6 +106,7 @@
                 <!--center-->
                 <div id="center">
                     <!-------------------------------------------------------- start search-->
+                    <button onclick="changeClass()">My Button</button>
                     
                     <section id="main">
                         <div class="sorting"><a style="color:white; font-size:12px;" href="index.html">Home Page</a> > Results</div>
@@ -148,9 +149,6 @@
                         </section>
                         
                         <div class="inner_listing">
-                            
-                            
-                            
                             <div class="twocols clearfix">
                                 
                                 
@@ -159,6 +157,7 @@
                                     
                                     <div id="insert_results"></div> <!--results from AJAX call-->
                                     
+                                    <div class="clearfix"></div>
                                     <div id="insert_pagination_bottom" class="aligncenter"></div>
                                 </section>
                                 
@@ -169,10 +168,30 @@
                         <!--footer-->
                         <section class="supporters">
                             <div class="inner aligncenter">
+                                <div class="footer_menu floatleft">
+                                    <img src="style/images/footer_menu_title.png">
+                                        <ul class="">
+                                            <li><a href="mailto:mtminfo@mttm.hu" >| Contact</a></li>
+                                            <li><a href="mailto:rajczy@mttm.hu">| Webmaster</a></li>
+                                            <li><a href="mailto:vasarhelyi@mttm.hu" >| Editor in chief </a></li>
+                                        </ul>
+                                        </div>
+                                <div class="footer_social floatleft">
+                                    <img src="style/images/footer_social.png">
+                                        
+                                        </div>
+                                <div class="footer_links floatleft">
+                                    <a href="http://www.natural-europe.eu/el"><img src="style/images/powered_by.png"></a>
+                                    <div>
+                                        <img src="style/images/curated_by.png">
+                                            <img src="style/images/designed_by.png">
+                                                </div>
+                                </div>
+                                
                                 <!--<a href="#" class="developed_by">Developed by</a>
-                                <a href="#" class="operated_by">Operated by</a>
-                                <a href="#" class="designed_by">Designed by</a>
-                                <!--<a href="#" class="supported_by">With partial EU funding support from</a>-->
+                                 <a href="#" class="operated_by">Operated by</a>
+                                 <a href="#" class="designed_by">Designed by</a>
+                                 <!--<a href="#" class="supported_by">With partial EU funding support from</a>-->
                             </div>
                         </section>
                         
@@ -278,8 +297,6 @@
 				//console.log(resizefonts);
 			}
             
-            
-            
             /*
              * function customizeFinder() is called at initialisation time
              * you need to change values repositoryName and serviceUrl
@@ -305,6 +322,14 @@
             
             </script>
         
+        <script type="text/javascript">
+            function changeClass()
+            {
+                jQuery('.item-intro').css({'width':'28%', 'height':'150px', 'float':'left'});
+            }
+            </script>
+        
+
         
     </body>
 </html>

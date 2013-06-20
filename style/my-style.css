@@ -1044,6 +1044,13 @@ body.innerpage #main {
 
 /*LISTING*/
 
+.listing_grid{
+    margin-top:15px;
+    width:23%;
+    padding-left:5px;
+    padding-bottom:50px;
+}
+
 #searchMessage{
     padding-left:150px;
 }
@@ -1066,7 +1073,9 @@ body.innerpage #main {
 	font-size:14px;
 	margin-bottom:16px;
     background-color:none;
-    width: 730px;
+    width:730px;;
+    
+    float:left;
     /*box-shadow: 1px 1px 1px #888888;*/
 }
 
@@ -1397,31 +1406,8 @@ nav.inline-nav a:after {
 	content:",";
 }
 
-.item-content h4 {
-	font-size:18px;
-	color:#7b7b7b;
-	margin-bottom:13px;
-}
 
-.item-content .itemrating {
-	width:470px;
-	font-size:12px;
-}
-.item-content .itemrating > li {
-	margin-bottom:8px;
-}
-.item-content .itemrating .ratinglabel {
-	width:180px;
-	display:inline-block;
-}
-a.setrightbottom {
-	position:absolute;
-	right:0;
-	bottom:11px;
-}
-.review-line {
-	font-size:12px;
-}
+
 /* flags */
 span.flag {
 	text-indent:-9999px;
@@ -1483,17 +1469,21 @@ a.grflag {
 	background:url(images/flag_en.jpg) 0 0 no-repeat;
 }
 
-.addtofavorite, .reportaproblem {
+.access, .reportaproblem {
+    color:#217f60 !important;
 	padding:35px 0 0 0;
-	margin:22px 0 0 28px;
+	margin:10px 10px 0 28px;
 	background-position:center top;
 	background-repeat:no-repeat;
 	display:inline-block;
 	font-size:12px;
+    float:right;
 }
-.addtofavorite {
-	background-image:url(images/add_to_favorite.png);
+
+.access{
+	background-image:url(images/access_to_the_resource.png);
 }
+
 .reportaproblem {
 	background-image:url(images/reportaproblem.png);
 }
@@ -1711,22 +1701,6 @@ a.disabled {
 
 /*VIEW ITEM PAGE*/
 
-.access, .reportaproblem {
-	padding:35px 0 0 0;
-	margin:22px 0 0 0px;
-	background-position:center top;
-	background-repeat:no-repeat;
-	display:inline-block;
-	font-size:12px;
-}
-.access{
-	background-image:url(images/access_to_the_resource.png);
-}
-
-.reportaproblem {
-	background-image:url(images/reportaproblem.png);
-}
-
 .item_label{
     color :  #217F60;
     font-size : 14px;
@@ -1737,10 +1711,27 @@ a.disabled {
     font-size:14px;
 }
 
+.item_title_link{
+    font-size:19px;
+    color: #217f60 !important;
+    font-weight:bold;
+    text-decoration:none;
+    background-color:none;
+}
+
+.item_title_link:hover{
+    font-size:19px;
+    background:none !important;
+    text-decoration:underline;
+}
+
+
 #item_title{
     font-size:19px;
     color: #217f60;
     font-weight:bold;
+    text-decoration:none;
+    background-color:none;
 }
 
 #itemThumb{
@@ -1758,6 +1749,9 @@ a.disabled {
 
 
 /*Left Sidebar in item*/
+.grayscale_back{
+    background-color:#dfe1d6;
+}
 .leftSidebarInfo {
     margin:0px 5px 15px 10px;
 	width:100%;
@@ -1772,7 +1766,7 @@ a.disabled {
 .leftSidebarInfo ul {
 	
     list-style-type: none;
-    margin:0px;
+    margin:0px 6px 0px 0px;
     padding:0px;
     text-align: left;
 }
@@ -1784,11 +1778,11 @@ a.disabled {
 
 
 .leftSidebarInfo ul li .titlesOnLeft{
-    padding: 5px 0px 0px 0px;
+    padding: 0px;
     margin: 20px 0px 0px 0px;
     font-size:20px;
-    line-height:50px;
-    border-top:1px solid gray;
+    line-height:40px;
+    /*border-top:1px solid gray;*/
     
 }
 
