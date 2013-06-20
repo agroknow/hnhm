@@ -1008,6 +1008,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            var thisRights2 = data.rights;
                                                            if(data.rights==undefined){thisRights2 == "undefined";}
                                                            
+                                                           alert(data.location+'@@ '+data.title+'@@ '+data.description+'@@ '+keywordsToEmbed+'@@ '+thisRights+'@@ '+thisRights2+'@@ '+data.identifier);
                                                            article({class:'item-intro '+odd},
                                                                    header(
                                                                           h2(//img({src:imgThumb}),
@@ -1061,24 +1062,24 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
 //                                                           imgThumb = data.objectUri;
 //                                                           }
                                                            
-                                                           var thisRights = data.licenseUri.licenseUri_0;
-                                                           if(data.licenseUri.licenseUri_0==undefined){thisRights == "undefined";}
+                                                           var thisRights = data.licenseUri;
+                                                           if(data.licenseUri==undefined){thisRights == "undefined";}
                                                            
-                                                           var thisRights2 = data.rights.rights_0;
-                                                           if(data.rights.rights_0==undefined){thisRights2 == "undefined";}
+                                                           var thisRights2 = data.rights;
+                                                           if(data.rights==undefined){thisRights2 == "undefined";}
 
                                                            
-//                                                        alert(data.objectUri.objectUri_0+'@@ '+data.title[0].value+'@@ '+data.description[0].value+'@@ '+keywordsToEmbed+'@@ '+thisRights[0]+'@@ '+thisRights2[0]+'@@ '+data.identifier.identifier_0);
+                                                        alert(data.objectUri.objectUri_0+'@@ '+data.title[0].value+'@@ '+data.description[0]+'@@ '+keywordsToEmbed+'@@ '+thisRights[0]+'@@ '+thisRights2[0]+'@@ '+data.identifier[0]);
                                                            article({class:'item-intro ' +odd },
                                                                    header(
                                                                           h2(//img({src:imgThumb}),
-                                                                             a({href:data.objectUri.objectUri_0, title: data.title[0].value, target: '_blank'},data.title[0].value)),
-                                                                          section(p({cls:'item-intro-desc'}, data.description[0].value),
+                                                                             a({href:data.objectUri, title: data.thisTitle.value, target: '_blank'},data.thisTitle.value)),
+                                                                          section(p({cls:'item-intro-desc'}, data.thisDescription.value),
                                                                                   aside({cls:'clearfix'},
-                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights[0]),
-                                                                                        div({cls:'language'}, span("Rights:"), thisRights2[0]),
+                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights),
+                                                                                        div({cls:'language'}, span("Rights:"), thisRights2),
                                                                                         div({cls:'floatright'},
-                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.identifier.identifier_0, cls:'moreinfo'}, "More Info")))))))});
+                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id, cls:'moreinfo'}, "More Info")))))))});
                                              
                                              
                                              
