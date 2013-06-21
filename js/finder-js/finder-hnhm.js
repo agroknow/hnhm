@@ -114,9 +114,6 @@ langName ['lat'] = 'Latin';
 langName['rus'] = 'Russian';
 
 
-
-
-
 google.load("language", "1");
 
 Event.observe(window, 'load', function() {
@@ -1113,9 +1110,10 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            
                                                            
                                                            //###
-                                                           
                                                            //alert(data.val);
-                                                           var label = data.val;
+                                                           
+                                                           //removing HNHM from facets
+                                                           var label = data.val.split('HNHM')[1];
                                                            
                                                            a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(label), span({cls:'total'}, data.count));
                                                            
