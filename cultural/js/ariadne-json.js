@@ -18,7 +18,11 @@ function getItemJSONP(itemID)
                 //every item is a JSON
                 var thisJson = JSON.stringify(data);
                 var tmp = JSON.parse(thisJson);
-                var record = tmp.result.metadata[0];
+            
+                var record = "";
+                if(tmp.result.metadata[0]!=undefined){
+                record = tmp.result.metadata[0];
+                }
                 
                 //alert(thisJson);
                                 
@@ -60,19 +64,15 @@ function getItemJSONP(itemID)
                                 
                 //-//Spatial Coverage
                 if(record.spatial!=undefined){
-                var tempSpatial = Object.keys(record.spatial);
-                for(var i=0; i <tempSpatial.length; i++)
-                {
-                var tempInSpatial =  Object.keys(record.spatial[i]);
-                for(var j=0; j<tempInSpatial.length;j++){
-                if(record.spatial[tempSpatial[i]][tempInSpatial[j]]!=undefined){
-                jQuery('#spatial_coverage').append(record.spatial[tempSpatial[i]][tempInSpatial[j]]);
-                if(j!=tempInSpatial.length-1){ jQuery('#spatial_coverage').append(", "); }
+                for(var j=0; j<record.spatial.length;j++){
+                if(record.spatial[j].value!=undefined){
+                jQuery('#spatial_coverage').append(record.spatial[j].value);
+                if(j!=record.spatial.length-1){ jQuery('#spatial_coverage').append(", "); }
                 }
                 
                 }
                 
-                }
+                
 
                 }
                                 
@@ -122,11 +122,13 @@ function getItemJSONP(itemID)
                 
                 
                 //-//-// generate_thumb
+                if(record.contentType!=undefined){
                 if(record.contentType.toUpperCase() == "IMAGE")
                 {
                 jQuery('#itemThumb').append("<a href=\""+record.thumbnailUri+"\" target=\"_blank\"><img src=\""+record.thumbnailUri+"\" /></a>");
                 }else{
                 jQuery('#itemThumb').append("<img src=\"images/no-image.gif\" />");
+                }
                 }
                 
                 
@@ -202,6 +204,7 @@ function getItemJSONP(itemID)
                 //-//Creative Common License
                 //document.getElementById('item_common_license').innerHTML = record.licenseUri ;
                 ////
+                if(record.licenseUri!=undefined){
                 if(record.licenseUri.search("licenses/by-nc-sa")>=0){
                 jQuery('#item_common_license').append('<nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc-sa.png"></a></nav>');
                 }
@@ -224,6 +227,8 @@ function getItemJSONP(itemID)
                 else{
                 jQuery('#item_common_license').append('<span>Rights: </span><nav  class="itemRights"><a href="'+record.licenseUri+'" class="secondary" target="_blank">'+record.licenseUri+'</a></nav>');
                 }
+                }
+                
                 ////
                 //-//Relation
                 document.getElementById('item_relation').innerHTML = record.relation ;
