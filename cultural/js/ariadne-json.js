@@ -176,11 +176,10 @@ function getItemJSONP(itemID)
                 if(record.subject!=undefined){
                 for(var i=0; i <record.subject.length; i++)
                 {
-                if(record.subject[i].value!=undefined){
-                if(record.subject[i].lang='en'){
+                if(record.subject[i].value!=undefined && record.subject[i].lang=='en'){
                 jQuery('#item_keywords').append(record.subject[i].value);
                 if(i!=record.subject.length-1){ jQuery('#item_keywords').append(", "); }
-                }
+                
                 }
                 }
                 }
@@ -231,7 +230,7 @@ function getItemJSONP(itemID)
                 
                 ////
                 //-//Relation
-                document.getElementById('item_relation').innerHTML = record.relation ;
+                document.getElementById('item_relation').innerHTML = "<a class=\"item_links\" href=\""+record.relation+"\" target=\"_blank\">" + record.relation + "</a>";
                 
                 
                 ///----Access to the resource

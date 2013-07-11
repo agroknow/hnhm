@@ -1342,6 +1342,20 @@ a.backbutton {
 	display:inline-block;
 }
 
+.item_links{
+    color : black !important;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.item_links:hover{
+    color:black;
+    text-decoration:underline;
+    background:none;
+    font-size:14px;
+    
+}
+
 .itemview {
 	margin-top:15px;
 	width: 100%;
@@ -1408,6 +1422,7 @@ nav.inline-nav a:after {
 
 
 
+
 /* flags */
 span.flag {
 	text-indent:-9999px;
@@ -1448,6 +1463,10 @@ span.deflag {
 span.frflag {
 	background:url(images/flag_fr.png) 0 0 no-repeat;
         text-indent:-9999px;
+}
+span.huflag {
+	background:url(images/flag_hu.png) 0 0 no-repeat;
+    text-indent:-9999px;
 }
 a.flag {
 	text-indent:-9999px;
