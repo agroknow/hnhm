@@ -402,6 +402,7 @@ function parseQueryString(initUpdate){
         var context = getUrlVars()["context"];
         var urlSelectedProviders = getUrlVars()["providers"];
         var urlSelectedCollections = getUrlVars()["collection"];
+       
         
         if (lrt) {
             lrt = lrt.replace("#","").replace("%20", " ");
@@ -420,7 +421,7 @@ function parseQueryString(initUpdate){
             clauses.push({language:'anyOf',expression:'provider:'+urlSelectedProviders});
         }
         if (urlSelectedCollections) {
-            urlSelectedCollections = urlSelectedCollections.replace("#","").replace("%20", " ");
+            urlSelectedCollections = urlSelectedCollections.replace("#","").replace("%20", " ").replace("%20", " "); // NEED TO CREATE A FUNCTION  TO REPLACE ALL OCCURENCIES
             clauses.push({language:'anyOf',expression:'collection:'+ urlSelectedCollections});
         }
         
@@ -1110,7 +1111,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            
                                                            
                                                            //###
-                                                           //alert(data.val);
+                                                          // alert(data.val);
                                                            
                                                            //removing HNHM from facets
                                                            var label = data.val;
