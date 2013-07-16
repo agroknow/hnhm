@@ -354,12 +354,12 @@
                               
                               $('.is_slider').each(function() {
                                                    var $navWrap = $('<div class="slider-navigation clearfix"></div>');
-                                                   var $navPrev = $('<a href="#" class="slider-prev">Prev</a>');
-                                                   $navWrap.append($navPrev);
-                                                   var $navPager = $('<div class="pager"></div>');
-                                                   $navWrap.append($navPager); 
                                                    var $navNext = $('<a href="#" class="slider-next">Next</a>');
                                                    $navWrap.append($navNext);
+                                                   var $navPager = $('<div class="pager"></div>');
+                                                   $navWrap.append($navPager);
+                                                   var $navPrev = $('<a href="#" class="slider-prev">Prev</a>');
+                                                   $navWrap.append($navPrev);
                                                    $navWrap.insertBefore(this);
                                                    $(this).cycle({
                                                                  fx:'scrollLeft',

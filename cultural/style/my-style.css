@@ -759,14 +759,14 @@ li.slider_page_listitem > div .info > a {
 	float:right;
 	display:block;
 }
-.slider-navigation a.slider-prev {
+.slider-navigation a.slider-next {
 	text-indent:-9999px;
 	height:13px;
 	width:13px;
 	background:url(images/pager_sprite.png) -27px -20px no-repeat;
 	margin-left:5px;
 }
-.slider-navigation a.slider-next {
+.slider-navigation a.slider-prev{
 	text-indent:-9999px;
 	height:13px;
 	width:13px;
