@@ -547,7 +547,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   oddCtr++;
                                                                   item.isOdd = oddCtr;
                                                                   
-                                                                //  alert(JSON.stringify(item));
+                                                                 alert(JSON.stringify(item));
                                                                   
                                                                   if(item.format[0]!=undefined){
                                                                   if (item.format[0].indexOf('pdf') != -1)
@@ -579,10 +579,10 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   
                                                                   
                                                                  
-                                                                  for(i=0,tmpSize=item.description.length;i<tmpSize;i++)
+                                                                  for(i=0,tmpSize=item.descriptions.length;i<tmpSize;i++)
                                                                   {
-                                                                    if(item.description[i].lang==SELECTED_LANGUAGE)
-                                                                    item.thisDescription=item.description[i];
+                                                                    if(item.descriptions[i].lang==SELECTED_LANGUAGE)
+                                                                    item.thisDescription=item.descriptions[i];
                                                                   }
                                                                   
                                                                   if(item.thisDescription==undefined){item.thisDescription = " There is no defined description for this language";}
@@ -1050,11 +1050,11 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            }//end if
                                                            
                                                          
-                                                           var imgThumb = data.format;
-                                                           if(data.contentType[0].toUpperCase() == 'IMAGE')
-                                                           {
-                                                           imgThumb = data.thumbnailUri[0];
-                                                           }
+                                                          var imgThumb = data.format;
+                                                          // if(data.contentType[0].toUpperCase() == 'IMAGE')
+                                                          // {
+                                                          // imgThumb = data.thumbnailUri[0];
+                                                          // }
                                                            
 //                                                           var thisRights = data.licenseUri;
 //                                                           if(data.licenseUri==undefined){thisRights == "undefined";}
@@ -1063,17 +1063,17 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
 //                                                           if(data.rights==undefined){thisRights2 == "undefined";}
 
                                                            
-//                                                        alert(data.objectUri.objectUri_0+'@@ '+data.title[0].value+'@@ '+data.description[0].value+'@@ '+keywordsToEmbed+'@@ '+thisRights[0]+'@@ '+thisRights2[0]+'@@ '+data.identifier.identifier_0);
+
                                                            article({class:'item-intro ' +odd },
                                                                    header(
                                                                           h2(img({src:imgThumb}),
-                                                                             a({href:data.objectUri.objectUri_0, title: data.title[0].value, target: '_blank'},data.title[0].value)),
-                                                                          section(p({cls:'item-intro-desc'}, data.description[0].value),
+                                                                             a({href:data.location[0], title: data.title[0].value, target: '_blank'},data.title[0].value)),
+                                                                          section(p({cls:'item-intro-desc'}, data.descriptions[0].value),
                                                                                   aside({cls:'clearfix'},
 //                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights),
 //                                                                                        div({cls:'language'}, span("Rights:"), thisRights2),
                                                                                         div({cls:'floatright'},
-                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id[0], cls:'moreinfo'}, "More Info")))))))});
+                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.identifier, cls:'moreinfo'}, "More Info")))))))});
                                              
                                              
                                              
@@ -1112,9 +1112,6 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            //###
                                                            //alert(data.val);
                                                            var label = data.val;
-                                                           //removing HNHM from facets
-                                                           if(data.val.indexOf('HNHM')!=-1){
-                                                           label = data.val.split('HNHM')[1];}
                                                            
                                                            a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(label), span({cls:'total'}, data.count));
                                                            

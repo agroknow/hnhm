@@ -319,17 +319,18 @@
             $.noConflict();
             function customizeFinder() {
                 return {
-                    "selectedProviders":["Hungarian Natural History Museum"],
+                    "selectedProviders":["EDUHNHM"],
                     "selectedLanguage":"en",
                     "externalSources": ["wp","scr","ss","gb"],
                     "pageContainers": ['bottom','top'],
-                    "facets" : ["collection","language","format","classification"], //"rights", "provider" removed
-                    "limitFacetDisplay": { "classification":[ "Fungi", "Bacteria","Protozoa", "Animalia" , "Plantae"]},
+                    "facets": ["provider","language","lrt", "context", "iur"], //,"rights" ,"format" "tagr"
                     "maxLengthDescription":  300,
                     "pageSize": 6,
-                    "repositoryName": "NE_Repo",
-                    "serviceUrl":"http://83.212.101.124:8080/NE_Repository_Exp/api/ariadne/restp"
-
+                    "repositoryName": "Organic.Edunet",//find this in the ariadne.properties file inside your Ariadne folder  ex."repositoryName":"AriadneNext Repository"
+                    "serviceUrl":"http://83.212.96.169:8080/glnRepo/api/ariadne/restp"
+                    
+                    //"repositoryName": "Organic.Edunet",//find this in the ariadne.properties file inside your Ariadne folder  ex."repositoryName":"AriadneNext Repository"
+                    //"serviceUrl":"http://83.212.96.169:8080/OE_repos/api/ariadne/restp"
                     
                 }
             }
