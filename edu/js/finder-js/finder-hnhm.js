@@ -547,7 +547,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   oddCtr++;
                                                                   item.isOdd = oddCtr;
                                                                   
-                                                                 alert(JSON.stringify(item));
+                                                                // alert(JSON.stringify(item));
                                                                   
                                                                   if(item.format[0]!=undefined){
                                                                   if (item.format[0].indexOf('pdf') != -1)
