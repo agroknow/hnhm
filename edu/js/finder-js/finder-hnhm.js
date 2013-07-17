@@ -547,30 +547,30 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   oddCtr++;
                                                                   item.isOdd = oddCtr;
                                                                   
-                                                                  //alert(JSON.stringify(item));
+                                                                //  alert(JSON.stringify(item));
                                                                   
-                                                                  if(item.format.format_0!=undefined){
-                                                                  if (item.format.format_0.indexOf('pdf') != -1)
+                                                                  if(item.format[0]!=undefined){
+                                                                  if (item.format[0].indexOf('pdf') != -1)
                                                                   item.format='images/icons/pdf.png';
-                                                                  else if (item.format.format_0.indexOf('powerpoint') != -1)
+                                                                  else if (item.format[0].indexOf('powerpoint') != -1)
                                                                   item.format='images/icons/ppt.png';
-                                                                  else if (item.format.format_0.indexOf('video') != -1)
+                                                                  else if (item.format[0].indexOf('video') != -1)
                                                                   item.format='images/icons/video.png';
-                                                                  else if (item.format.format_0.indexOf('zip') != -1)
+                                                                  else if (item.format[0].indexOf('zip') != -1)
                                                                   item.format='images/icons/zip.png';
-                                                                  else if (item.format.format_0.indexOf('audio') != -1)
+                                                                  else if (item.format[0].indexOf('audio') != -1)
                                                                   item.format='images/icons/audio.png';
-                                                                  else if ((item.format.format_0.indexOf('text') != -1) ||(item.format.format_0.indexOf('multipart') != -1) )
+                                                                  else if ((item.format[0].indexOf('text') != -1) ||(item.format[0].indexOf('multipart') != -1) )
                                                                   item.format='images/icons/text.png';
-                                                                  else if ((item.format.format_0.indexOf('xml') != -1) )
+                                                                  else if ((item.format[0].indexOf('xml') != -1) )
                                                                   item.format='images/icons/xml.png';
-                                                                  else if (item.format.format_0.indexOf('image') != -1)
+                                                                  else if (item.format[0].indexOf('image') != -1)
                                                                   item.format='images/icons/image.png';
                                                                   //item.format=item.thumbnailUri;
                                                                   //item.format=item.location;
-                                                                  else if ((item.format.format_0.indexOf('word')!= -1) || (item.format.format_0.indexOf('wordprocessingml')!= -1))
+                                                                  else if ((item.format[0].indexOf('word')!= -1) || (item.format[0].indexOf('wordprocessingml')!= -1))
                                                                   item.format='images/icons/word.png';
-                                                                  else if ((item.format.format_0.indexOf('application')!= -1))
+                                                                  else if ((item.format[0].indexOf('application')!= -1))
                                                                   item.format='images/icons/application.png';
                                                                   else
                                                                   item.format='images/icons/application.png';
@@ -1014,7 +1014,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                                         div({cls:'language'}, span("Creative commons licence:"), thisRights),
                                                                                         div({cls:'language'}, span("Rights:"), thisRights2),
                                                                                         div({cls:'floatright'},
-                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.identifier, cls:'moreinfo'}, "More Info")))))))
+                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id, cls:'moreinfo'}, "More Info")))))))
                                                            });
                                              
                                              
@@ -1051,9 +1051,9 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            
                                                          
                                                            var imgThumb = data.format;
-                                                           if(data.contentType.contentType_0.toUpperCase() == 'IMAGE')
+                                                           if(data.contentType[0].toUpperCase() == 'IMAGE')
                                                            {
-                                                           imgThumb = data.objectUri.objectUri_0;
+                                                           imgThumb = data.thumbnailUri[0];
                                                            }
                                                            
 //                                                           var thisRights = data.licenseUri;
@@ -1073,7 +1073,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
 //                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights),
 //                                                                                        div({cls:'language'}, span("Rights:"), thisRights2),
                                                                                         div({cls:'floatright'},
-                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id.id_0, cls:'moreinfo'}, "More Info")))))))});
+                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id[0], cls:'moreinfo'}, "More Info")))))))});
                                              
                                              
                                              
@@ -1111,9 +1111,10 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            
                                                            //###
                                                            //alert(data.val);
-                                                           
+                                                           var label = data.val;
                                                            //removing HNHM from facets
-                                                           var label = data.val.split('HNHM')[1];
+                                                           if(data.val.indexOf('HNHM')!=-1){
+                                                           label = data.val.split('HNHM')[1];}
                                                            
                                                            a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(label), span({cls:'total'}, data.count));
                                                            
