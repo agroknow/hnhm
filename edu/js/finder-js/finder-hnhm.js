@@ -578,11 +578,12 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   }
                                                                   
                                                                   
-                                                                 
+                                                                  if(item.descriptions!=undefined){
                                                                   for(i=0,tmpSize=item.descriptions.length;i<tmpSize;i++)
                                                                   {
                                                                     if(item.descriptions[i].lang==SELECTED_LANGUAGE)
-                                                                    item.thisDescription=item.descriptions[i];
+                                                                    item.thisDescription=item.descriptions[i].value;
+                                                                  }
                                                                   }
                                                                   
                                                                   if(item.thisDescription==undefined){item.thisDescription = " There is no defined description for this language";}
@@ -592,7 +593,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   for(i=0,tmpSize=item.title.length;i<tmpSize;i++)
                                                                   {
                                                                   if(item.title[i].lang==SELECTED_LANGUAGE)
-                                                                  item.thisTitle=item.title[i];
+                                                                  item.thisTitle=item.title[i].value;
                                                                   }
                                                                   
                                                                   if(item.thisTitle==undefined){item.thisTitle = " There is no defined title for this language";}
@@ -607,24 +608,6 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   {
                                                                   
                                                                   try {item.keywords = item.keywords.split("&#044; ");} catch(e) {}
-                                                                  
-                                                                  var spt = item.title.split(",",1);
-                                                                  item.title = spt[0];
-                                                                  var length = spt[0].length;
-                                                                  
-                                                                  if (item.title[0] == '[')
-                                                                  item.title = item.title.substring(1,length);
-                                                                  else
-                                                                  item.title = item.title.substring(0,length);
-                                                                  
-                                                                  spt = item.description.split(",",1);
-                                                                  item.description=spt[0];
-                                                                  length = spt[0].length;
-                                                                  
-                                                                  if (item.description[0] == '[')
-                                                                  item.description = item.description.substring(1,length);
-                                                                  else
-                                                                  item.description =item.description.substring(0,length);
                                                                   
                                                                    item.isOdd = oddCtr;
                                                                   
@@ -963,7 +946,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                              
                                              Jaml.register('result', function(data){
                                                            
-                                                           var keywordsToEmbed = "test_mathiou";
+                                                           var keywordsToEmbed = "";
                                                            
                                                            
                                                            var odd = "";
@@ -987,15 +970,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            }//end for
                                                            }//end if
                                                            
-                                                           
-                                                           /*---------------------SECOND CHANGE*/
-                                                           //var imgThumb = data.format;
-//                                                           if(data.contentType[0].toUpperCase() == 'IMAGE')
-//                                                           {
-//                                                           imgThumb = data.objectUri;
-//                                                           }
-                                                           
-                                                           
+               
                                                            
                                                            var thisRights = data.licenseUri;
                                                            if(data.licenseUri==undefined){thisRights == "undefined";}
@@ -1006,8 +981,8 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            article({class:'item-intro '+odd},
                                                                    header(
                                                                           h2(//img({src:imgThumb}),
-                                                                             a({href:data.location,title: data.title, target: '_blank'},data.title)),
-                                                                          section(p({cls:'item-intro-desc'}, data.description),
+                                                                             a({href:data.location,title: data.thisTitle, target: '_blank'},data.thisTitle)),
+                                                                          section(p({cls:'item-intro-desc'}, data.thisDescription),
                                                                                   aside({cls:'clearfix'},
                                                                                         div({cls:'floatleft'},
                                                                                             div({cls:'line keywords'}, span("Keywords:"), keywordsToEmbed)),
@@ -1025,7 +1000,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            //               odd++;
                                                            //               var backgroundClass = ""
                                                            //               if(odd%2===0){backgroundClass = "odd";}
-                                                           var keywordsToEmbed = "test_mathiou 2";
+                                                           var keywordsToEmbed = "";
                                                            
                                                            var odd = "";
                                                            if(data.isOdd%2===1){odd="odd"}
@@ -1067,8 +1042,8 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            article({class:'item-intro ' +odd },
                                                                    header(
                                                                           h2(img({src:imgThumb}),
-                                                                             a({href:data.location[0], title: data.title[0].value, target: '_blank'},data.title[0].value)),
-                                                                          section(p({cls:'item-intro-desc'}, data.descriptions[0].value),
+                                                                             a({href:data.location[0], title: data.thisTitle, target: '_blank'},data.thisTitle)),
+                                                                          section(p({cls:'item-intro-desc'}, data.thisDescription),
                                                                                   aside({cls:'clearfix'},
 //                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights),
 //                                                                                        div({cls:'language'}, span("Rights:"), thisRights2),
