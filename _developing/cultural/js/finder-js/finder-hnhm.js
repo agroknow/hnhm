@@ -540,723 +540,576 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                              $('noResults').show();
                                              }
                                              
-                                             /*----------------------------------------------------------------------------------------------*/
-                                             /*--------------------CREATE EVERY ITEM BEFORE CALL RENDERING WITH JAML-------------------------*/
-                                             var oddCtr = 0; /*counter to add the odd style in listing*/
-                                             result.metadata.each(function(item,index){
-                                                                  
-                                                                  oddCtr++;
-                                                                  item.isOdd = oddCtr;
-                                                                  
-                                                                  //alert(JSON.stringify(item));
-                                                                  
-                                                                  if(item.format!=undefined && item.format[0]!=undefined){
-                                                                  if (item.format[0].indexOf('pdf') != -1)
-                                                                  item.format='images/icons/pdf.png';
-                                                                  else if (item.format[0].indexOf('powerpoint') != -1)
-                                                                  item.format='images/icons/ppt.png';
-                                                                  else if (item.format[0].indexOf('video') != -1)
-                                                                  item.format='images/icons/video.png';
-                                                                  else if (item.format[0].indexOf('zip') != -1)
-                                                                  item.format='images/icons/zip.png';
-                                                                  else if (item.format[0].indexOf('audio') != -1)
-                                                                  item.format='images/icons/audio.png';
-                                                                  else if ((item.format[0].indexOf('text') != -1) ||(item.format[0].indexOf('multipart') != -1) )
-                                                                  item.format='images/icons/text.png';
-                                                                  else if ((item.format[0].indexOf('xml') != -1) )
-                                                                  item.format='images/icons/xml.png';
-                                                                  else if (item.format[0].indexOf('image') != -1)
-                                                                  item.format='images/icons/image.png';
-                                                                  //item.format=item.thumbnailUri;
-                                                                  //item.format=item.location;
-                                                                  else if ((item.format[0].indexOf('word')!= -1) || (item.format[0].indexOf('wordprocessingml')!= -1))
-                                                                  item.format='images/icons/word.png';
-                                                                  else if ((item.format[0].indexOf('application')!= -1))
-                                                                  item.format='images/icons/application.png';
-                                                                  else
-                                                                  item.format='images/icons/application.png';
-                                                                  
-                                                                  }
-                                                                  
-                                                                  
-                                                                  
-                                                                  for(i=0,tmpSize=item.description.length;i<tmpSize;i++)
-                                                                  {
-                                                                  if(item.description[i].lang==SELECTED_LANGUAGE)
-                                                                  item.thisDescription=item.description[i];
-                                                                  }
-                                                                  
-                                                                  if(item.thisDescription==undefined){item.thisDescription = " There is no defined description for this language";}
-                                                                  
-                                                                  
-                                                                  
-                                                                  for(i=0,tmpSize=item.title.length;i<tmpSize;i++)
-                                                                  {
-                                                                  if(item.title[i].lang==SELECTED_LANGUAGE)
-                                                                  item.thisTitle=item.title[i];
-                                                                  }
-                                                                  
-                                                                  if(item.thisTitle==undefined){item.thisTitle = " There is no defined title for this language";}
-                                                                  
-                                                                  
-                                                                  
-                                                                  if(item.keywords == undefined || item.keywords == '')
-                                                                  {
-                                                                  $('search_results').insert(Jaml.render('resultwithoutkeywords',item));
-                                                                  }
-                                                                  else
-                                                                  {
-                                                                  
-                                                                  try {item.keywords = item.keywords.split("&#044; ");} catch(e) {}
-                                                                  
-                                                                  var spt = item.title.split(",",1);
-                                                                  item.title = spt[0];
-                                                                  var length = spt[0].length;
-                                                                  
-                                                                  if (item.title[0] == '[')
-                                                                  item.title = item.title.substring(1,length);
-                                                                  else
-                                                                  item.title = item.title.substring(0,length);
-                                                                  
-                                                                  spt = item.description.split(",",1);
-                                                                  item.description=spt[0];
-                                                                  length = spt[0].length;
-                                                                  
-                                                                  if (item.description[0] == '[')
-                                                                  item.description = item.description.substring(1,length);
-                                                                  else
-                                                                  item.description =item.description.substring(0,length);
-                                                                  
-                                                                  item.isOdd = oddCtr;
-                                                                  
-                                                                  $('search_results').insert(Jaml.render('result',item));
-                                                                  // alert("metaid:" +item.metaMetadataId);
-                                                                  iter++;
-                                                                  }
-                                                                  
-                                                                  
-                                                                  });
-                                             
-                                             $('search_results_index').show();
-                                             
-                                             var finalNumberResults = ((start + numberResults) < result.nrOfResults)?(start + numberResults):result.nrOfResults;
-                                             if(result.nrOfResults > 0) {
-                                             $('search_results_index').update(' (#{start} - #{end} of #{total})'.interpolate({start: formatInteger(start + 1,THOUSAND_SEP), end: formatInteger(finalNumberResults,THOUSAND_SEP), total: formatInteger(result.nrOfResults,THOUSAND_SEP)}));
-                                             pagination_show();
-                                             }
-                                             else {
-                                             $('search_results_index').update('(No Results Found)');
-                                             pagination_hide();
-                                             }
-                                             
-                                             /* for facet presentation
-                                              result.facets.each(function(item,index){
-                                              
-                                              //     item.title = item.title.substring(0,length);
-                                              
-                                              $('search_results').insert(Jaml.render('result2',item));
-                                              
-                                              });
-                                              */
-                                             
-                                             }
-                                             
-                                             
-                                             /*if(!keyword.blank()){
-                                              $('keywords_filter').show();
-                                              $('kwv').update(keyword);
-                                              }
-                                              else{
-                                              $('keywords_filter').hide();
-                                              }*/
-                                             
-                                             if(needsUpdate){
-                                             updatePaginator(result.nrOfResults);
-                                             result.facets.each(function(item,index){
-                                                                var fld = item.field;
-                                                                //rbkey = facetKeys[fld];
-                                                                var facetHasNoLimit = true;
-                                                                var limitValues = [];
-                                                                if (LIMIT_FACET_DISPLAY[fld]) {
-                                                                limitValues = LIMIT_FACET_DISPLAY[fld];
-                                                                facetHasNoLimit = false;
-                                                                }
-                                                                var rbkey = fld;
-                                                                var element = $(rbkey + '_rbo');
-                                                                if(element && facetExpressions.get(fld) == undefined){
-                                                                element.update('');
-                                                                if(item.numbers != undefined){
-                                                                item.numbers.each(function(it2,idx2){
-                                                                                  if (facetHasNoLimit || limitValues.indexOf(it2.val) >= 0) {
-                                                                                  
-                                                                                  
-                                                                                  it2.field = fld;
-                                                                                  
-                                                                                  it2.val=it2.val.replace(/\'/g, "&#34;");
-                                                                                                          it2.count = formatInteger(it2.count,THOUSAND_SEP);
-                                                                                                          //element.insert(Jaml.render('rbcriteria',it2));
-                                                                                                          if (fld!= "language")
-                                                                                                          element.insert(Jaml.render('rbcriteria',it2));
-                                                                                                          
-                                                                                                          else
-                                                                                                          // check first if langName[it2.val] exists already in rbList
-                                                                                                          {
-                                                                                                          checkLang(it2.val,it2.count);
-                                                                                                          
-                                                                                                          if (CHECK==0)
-                                                                                                          element.insert(Jaml.render('rbcriteria2',it2));
-                                                                                                          
-                                                                                                          }
-                                                                                                          }
-                                                                                                          });
-                                                                                  }
-                                                                                  }
-                                                                                  });
-                                                                
-                                                                
-                                                                facetSlide();
-                                                                
-                                                                selectedFacets.each(function(item,index){
-                                                                                    $(item.id).addClassName('facet-selected');
-                                                                                    
-                                                                                    });
-                                                                }
-                                                                //webSnapr.init();
-                                                                //$('header').scrollTo();
-                                                                //loadTranslator();
-                                                                
-                                                                
-                                                                },
-                                                                onComplete: function(transport){
-                                                                // $('search_status').update('');
-                                                                },
-                                                                onLoading: function(){
-                                                                $('search_results').update('');
-                                                                $('search_terms').update('');
-                                                                $('search_results_index').update('');
-                                                                }
-                                                                });
-                                             }
-                                             
-                                             function checkLang(name,counter){
-                                             
-                                             CHECK=0;
-                                             $$('#language_rbo li').each(function(item) {
-                                                                         
-                                                                         //  alert(item.innerHTML);
-                                                                         
-                                                                         var pos = item.id.indexOf(':');
-                                                                         
-                                                                         var langValue = item.id.substring(pos+1);
-                                                                         
-                                                                         if (langName[langValue]== langName[name])
-                                                                         {
-                                                                         //   pos = item.name.indexOf('/a');
-                                                                         var count = item.innerHTML;
-                                                                         pos = count.indexOf('/a');
-                                                                         var length = count.length;
-                                                                         count = item.innerHTML.substring(pos+5,length-1);
-                                                                         
-                                                                         count=count.replace("," ,"");
-                                                                         var num = count*1;
-                                                                         
-                                                                         num = Number(num) + Number(counter);
-                                                                         num = formatInteger(num,THOUSAND_SEP);
-                                                                         
-                                                                         item.update(item.innerHTML.substring(0,pos+4) + '(#{count})'.interpolate({count: num}));
-                                                                         CHECK=1;
-                                                                         
-                                                                         return;
-                                                                         }
-                                                                         
-                                                                         });
-                                             
-                                             
-                                             
-                                             
-                                             /*var names = $('language_rbo').select('ul.rbList');
-                                              
-                                              names.each(function(item){
-                                              
-                                              //var pos = item.id.indexOf(':');
-                                              var facet = item.id;
-                                              //.substring(0,pos);
-                                              //var langValue = item.id.substring(pos+1);
-                                              alert(facet);
-                                              if (langName[langValue]== langName[name])
-                                              alert("EVRHKA");
-                                              
-                                              });*/
-                                             
-                                             
-                                             
-                                             }
-                                             
-                                             
-                                             
-                                             
-                                             
-                                             //                                             function loadTranslator() {
-                                             //
-                                             //                                             var script = new Element('script',{'type':'text/javascript','src':'http://translate.google.com/translate_a/element.js?cb=googleSectionalElementInit&ug=section&hl=auto'});
-                                             //
-                                             //                                             $('script-translator').childElements().each(function(el){el.remove();});
-                                             //                                             $('script-translator').appendChild(script);
-                                             //
-                                             //                                             if(google.translate) {
-                                             //                                             new google.translate.SectionalElement({
-                                             //                                                                                   sectionalNodeClassName: 'lodescription',
-                                             //                                                                                   controlNodeClassName: 'control',
-                                             //                                                                                   background: '#ffffcc'
-                                             //                                                                                   }, 'google_sectional_element');
-                                             //                                             }
-                                             //
-                                             //                                             $$('.lodescription').each(function(data){
-                                             //                                                                       var toTranslate = data.innerHTML.stripScripts().unescapeHTML().replace(/[\n\r\s]+/g, ' ').replace('Translate','');
-                                             //                                                                       google.language.detect(toTranslate,function(result){
-                                             //                                                                                              if (!result.error) {
-                                             //                                                                                              if(result.language == 'en') {
-                                             //                                                                                              data.descendants()[0].hide();
-                                             //                                                                                              }
-                                             //
-                                             //                                                                                              }
-                                             //                                                                                              });
-                                             //                                                                       });
-                                             //
-                                             //
-                                             //                                             }
-                                             
-                                             
-                                             
-                                             
-                                             
-                                             
-                                             
-                                             
-                                             function addEndingDescription(data){
-                                             if(data.length ==  0 )
-                                             return "";
-                                             return (data.length<END_DESCRIPTION)?data:(data.substr(START_DESCRIPTION,END_DESCRIPTION)).concat(""," <span class='suspension-points'>...</span>");
-                                             }
-                                             
-                                             function removeHtmlTags(data) {
-                                             var strInputCode = data.replace(/&(lt|gt);/g, function (strMatch, p1){
-                                                                             return (p1 == "lt")? "<" : ">";
-                                                                             });
-                                             var strTagStrippedText = strInputCode.replace(/<\/?[^>]+(>|$)/g, " ");
-                                             return strTagStrippedText;
-                                             }
-                                             
-                                             function stripUrl(data) {
-                                             
-                                             var strTagStrippedText = data.replace(/<\/?[^>]:+(>|$)/g, "_");
-                                             return strTagStrippedText;
-                                             
-                                             
-                                             }
-                                             
-                                             
-                                             
-                                             
-                                             function initializeJamlTemplates(){
-                                             
-                                             Jaml.register('thumb_pres', function(data) {
-                                                           a({href: data.location,title: data.title , target: '_blank'}, img({src:data.format, height:"90", width:"80" }))
-                                                           });
-                                             
-                                             
-                                             Jaml.register('keyword', function(data) {
-                                                           a({href:'javascript:void(0);', onclick: "searchByKeyword('#{key}')".interpolate({key: data})}, data);
-                                                           });
-                                             
-                                             /*
-                                              Jaml.render('first_title',function(data){
-                                              a({href:data.location,title: data.title, target: '_blank'},data.title)
-                                              }); */
-                                             
-                                             //                                             Jaml.register('result', function(data){
-                                             //                                                           div({cls:'row'},
-                                             //
-                                             //                                                               div({cls:'lotitle'},
-                                             //                                                                   a({href:data.location,title: data.title, target: '_blank'},data.title)
-                                             //                                                                   // Jaml.render('first_title',data.title)
-                                             //                                                                   ),br(),
-                                             //
-                                             //                                                               div({cls:'thumb'},
-                                             //
-                                             //                                                                   Jaml.render('thumb_pres',data)
-                                             //                                                                   ,br(),
-                                             //                                                                   div({cls:'lodescription'},
-                                             //                                                                       div({cls:'control'}),
-                                             //                                                                       removeHtmlTags(addEndingDescription(data.description))),br()
-                                             //                                                                   ),
-                                             //
-                                             //                                                               span({cls:'keywords'},
-                                             //                                                                    span({cls:'bold'},'Keywords: '),
-                                             //                                                                    Jaml.render('keyword',data.keywords)
-                                             //                                                                    )
-                                             //
-                                             //
-                                             //
-                                             //                                                               /*  div({cls:'moremeta'}, p(),span({cls:'heading'},'more info'),
-                                             //                                                                div({cls:'metacontent'},
-                                             //                                                                'Location: ', a({href:data.location,title: data.location, target: '_blank'},data.location), br(),
-                                             //                                                                //  'Context: ', data.context,
-                                             //                                                                br(),
-                                             //                                                                span({cls:'keywords'},
-                                             //                                                                span({cls:'bold'},'Keywords: '),
-                                             //                                                                Jaml.render('keyword',data.keywords)
-                                             //                                                                ), br()
-                                             //                                                                ,a({href:"http://83.212.96.219:8080/cultural/services/oai?verb=GetRecord&metadataPrefix=oai_lom&identifier="+data.metaMetadataId, title: "View all meta", target: '_blank'},"View all meta"), br()
-                                             //
-                                             //                                                                )
-                                             //                                                                )*/
-                                             //                                                               );
-                                             //                                                           });
-                                             
-                                             
-                                             
-                                             //                                             Jaml.register('resultwithoutkeywords', function(data) {
-                                             //                                                           /* div({cls:'row'},
-                                             //                                                            div({cls:'lotitle'},
-                                             //                                                            a({href:data.location,title: data.title, target: '_blank'},data.title)),
-                                             //                                                            div({cls:'snip'},
-                                             //                                                            div({cls:'lodescription'},
-                                             //                                                            div({cls:'control'}),
-                                             //                                                            removeHtmlTags(addEndingDescription(data.description)))
-                                             //                                                            )
-                                             //                                                            );*/
-                                             //
-                                             //                                                           div({cls:'row'},
-                                             //
-                                             //                                                               div({cls:'lotitle'},
-                                             //                                                                   a({href:data.location,title: data.title, target: '_blank'},data.title)
-                                             //                                                                   // Jaml.render('first_title',data.title)
-                                             //                                                                   ),br(),
-                                             //
-                                             //                                                               div({cls:'thumb'},
-                                             //
-                                             //                                                                   Jaml.render('thumb_pres',data)
-                                             //                                                                   ,br(),
-                                             //                                                                   div({cls:'lodescription'},
-                                             //                                                                       div({cls:'control'}),
-                                             //                                                                       removeHtmlTags(addEndingDescription(data.description))),br()
-                                             //                                                                   ),
-                                             //
-                                             //
-                                             //                                                               div({cls:'moremeta'}, p(),span({cls:'heading'},'more info'),
-                                             //                                                                   div({cls:'metacontent'},
-                                             //                                                                       'Location: ', a({href:data.location,title: data.location, target: '_blank'},data.location), br(),
-                                             //                                                                       //  'Context: ', data.context,
-                                             //                                                                       br()
-                                             //
-                                             //                                                                       ,a({href:"http://83.212.96.219:8080/cultural_repos/services/oai?verb=GetRecord&metadataPrefix=oai_lom&identifier="+data.metaMetadataId, title: "View all meta", target: '_blank'},"View all meta"), br()
-                                             //
-                                             //                                                                       )
-                                             //                                                                   )
-                                             //                                                               );
-                                             //
-                                             //
-                                             //                                                           });
-                                             
-                                             /*-----------------------------RENDER RESULT LISTING ITEMS--------------------------------*/
-                                             
-                                             
-                                             Jaml.register('result', function(data){
-                                                           
-                                                           var keywordsToEmbed = "test_mathiou";
-                                                           
-                                                           
-                                                           var odd = "";
-                                                           if(data.isOdd%2===1){odd="odd"}
-                                                           
-                                                           //keywords
-                                                           if(data.subject!=undefined){
-                                                           for(var i=0 , length=data.subject.length; i<length;i++)
-                                                           {
-                                                           if(data.subject[i].lang=='en'){
-                                                           if(i!==length-1)
-                                                           {
-                                                           keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.subject[i].value+"\">&nbsp"+data.subject[i].value+"</a>"
-                                                           }
-                                                           else
-                                                           {
-                                                           keywordsToEmbed +="<a class=\"secondary last\" href=\"listing.html?query="+data.subject[i].value.split(" ")[0]+"\">&nbsp"+data.subject[i].value+"</a>"
-                                                           }
-                                                           }//end lang check
-                                                           
-                                                           }//end for
-                                                           }//end if
-                                                           
-                                                           //title
-                                                           var thisTitle = "undefined";
-                                                           if(data.title!=undefined)
-                                                           {
-                                                           thisTitle=data.title[0].value;
-                                                           for(var i=0 , length=data.title.length; i<length;i++)
-                                                           {
-                                                           if(data.title[i].lang=='en'){
-                                                           thisTitle = data.title[i].value
-                                                           }//end lang check
-                                                           
-                                                           }//end for
-                                                           }//end if
-                                                           
-                                                           //description
-                                                           var thisDescription = "undefined";
-                                                           if(data.description!=undefined)
-                                                           {
-                                                           thisDescription=data.description[0].value;
-                                                           for(var i=0 , length=data.description.length; i<length;i++)
-                                                           {
-                                                           if(data.description[i].lang=='en'){
-                                                           thisDescription = data.description[i].value
-                                                           }//end lang check
-                                                           
-                                                           }//end for
-                                                           }//end if
-                                                           
-                                                           var thisRights = data.licenseUri;
-                                                           if(data.licenseUri==undefined){thisRights == "undefined";}
-                                                           
-                                                           var thisRights2 = data.rights;
-                                                           if(data.rights==undefined){thisRights2 == "undefined";}
-                                                           
-                                                           article({class:'item-intro '+odd},
-                                                                   header(
-                                                                          h2(//img({src:imgThumb}),
-                                                                             a({href:data.location,title: data.title, target: '_blank'},data.title)),
-                                                                          section(p({cls:'item-intro-desc'}, data.description),
-                                                                                  aside({cls:'clearfix'},
-                                                                                        div({cls:'floatleft'},
-                                                                                            div({cls:'line keywords'}, span("Keywords:"), keywordsToEmbed)),
-                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights),
-                                                                                        div({cls:'language'}, span("Rights:"), thisRights2),
-                                                                                        div({cls:'floatright'},
-                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.identifier, cls:'moreinfo'}, "More Info")))))))
-                                                           });
-                                             
-                                             
-                                             
-                                             
-                                             Jaml.register('resultwithoutkeywords', function(data){
-                                                           
-                                                           //               odd++;
-                                                           //               var backgroundClass = ""
-                                                           //               if(odd%2===0){backgroundClass = "odd";}
-                                                           var keywordsToEmbed = "test_mathiou 2";
-                                                           
-                                                           var odd = "";
-                                                           if(data.isOdd%2===1){odd="odd"}
-                                                           
-                                                           
-                                                           //keywords
-                                                           if(data.subject!=undefined){
-                                                           for(var i=0 , length=data.subject.length; i<length;i++)
-                                                           {
-                                                           if(data.subject[i].lang=='en'){
-                                                           if(i!==length-1)
-                                                           {
-                                                           keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.subject[i].value+"\">&nbsp"+data.subject[i].value+"</a>"
-                                                           }
-                                                           else
-                                                           {
-                                                           keywordsToEmbed +="<a class=\"secondary last\" href=\"listing.html?query="+data.subject[i].value.split(" ")[0]+"\">&nbsp"+data.subject[i].value+"</a>"
-                                                           }
-                                                           }//end lang check
-                                                           
-                                                           }//end for
-                                                           }//end if
-                                                           
-                                                           
-                                                           var imgThumb = data.format;
-                                                           if(data.contentType[0].toUpperCase() == 'IMAGE')
-                                                           {
-                                                           imgThumb = data.objectUri[0];
-                                                           }
-                                                           
-                                                           //title
-                                                           var thisTitle = "undefined";
-                                                           if(data.title!=undefined)
-                                                           {
-                                                           thisTitle=data.title[0].value;
-                                                           for(var i=0 , length=data.title.length; i<length;i++)
-                                                           {
-                                                           if(data.title[i].lang=='en'){
-                                                           thisTitle = data.title[i].value
-                                                           }//end lang check
-                                                           
-                                                           }//end for
-                                                           }//end if
-                                                           
-                                                           //description
-                                                           var thisDescription = "undefined";
-                                                           if(data.description!=undefined)
-                                                           {
-                                                           thisDescription=data.description[0].value;
-                                                           for(var i=0 , length=data.description.length; i<length;i++)
-                                                           {
-                                                           if(data.description[i].lang=='en'){
-                                                           thisDescription = data.description[i].value
-                                                           }//end lang check
-                                                           
-                                                           }//end for
-                                                           }//end if
-                                                           
-                                                           
-                                                           article({class:'item-intro ' +odd },
-                                                                   header(
-                                                                          h2(img({src:imgThumb}),
-                                                                             a({href:data.objectUri[0], title: thisTitle, target: '_blank'},thisTitle)),
-                                                                          section(p({cls:'item-intro-desc'}, thisDescription),
-                                                                                  aside({cls:'clearfix'},
-                                                                                        div({cls:'floatright'},
-                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id[0], cls:'moreinfo'}, "More Info")))))))});
-                                             
-                                             
-                                             
-                                             /*---------------------------------------------------------------------------------------------*/
-                                             
-                                             
-                                             /* Jaml.register('rbcriteria', function(data)
-                                              {
-                                              
-                                              
-                                              li({id: data.field + ':' + data.val},
-                                              a({href:'javascript:void(0);',title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})},
-                                              data.val),'(#{count})'.interpolate({count: data.count})
-                                              );
-                                              });
-                                              
-                                              
-                                              Jaml.register('rbcriteria2', function(data)
-                                              {
-                                              li({id: data.field + ':' + data.val},
-                                              a({href:'javascript:void(0);',title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})},
-                                              langName[data.val]),
-                                              '(#{count})'.interpolate({count: data.count})
-                                              );
-                                              });*/
-                                             
-                                             /*---------------------------------------------------------------------------------------------*/
-                                             /*-----------------------------RENDER FACETS--------------------------------*/
-                                             
-                                             
-                                             
-                                             Jaml.register('rbcriteria', function(data) //rest facets
-                                                           {
-                                                           
-                                                           
-                                                           //###
-                                                          // alert(data.val);
-                                                           
-                                                           //removing HNHM from facets
-                                                           var label = data.val;
-                                                           if(data.val.indexOf('HNHM')!=-1){
-                                                           label = data.val.split('HNHM')[1];}
-                                                           
-                                                           a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(label), span({cls:'total'}, data.count));
-                                                           
-                                                           
-                                                           });
-                                             
-                                             
-                                             Jaml.register('rbcriteria2', function(data) //language facet
-                                                           {
-                                                           
-                                                           
-                                                           
-                                                           
-                                                           
-                                                           a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val, parent: data.field})}, span(langName[data.val]), span({cls:'total'}, data.count ));
-                                                           
-                                                           //              li({id: data.field + ':' + data.val},
-                                                           //         a({href:'javascript:void(0);', title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},
-                                                           //           span(langName[data.val]), span({cls:'total'}, data.count )));
-                                                           });
-                                             
-                                             
-                                             /*------------------------------*/
-                                             }
-                                             
-                                             
-                                             
-                                             
-                                             
-                                             function facetSlide(){
-                                             
-                                             jQuery(document).ready(function(){
-                                                                    
-                                                                    jQuery('.filter_parent').each(function() {
-                                                                                                  if(jQuery(this).hasClass("opened")) jQuery(this).next().css("display","block");
-                                                                                                  });
-                                                                    jQuery('.filter_parent').click(function(event){
-                                                                                                   event.preventDefault();
-                                                                                                   jQuery(this).toggleClass("opened");
-                                                                                                   jQuery(this).next().slideToggle("slow");
-                                                                                                   });
-                                                                    exit();
-                                                                    
-                                                                    });
-                                             }
-                                             
-                                             
-                                             
-                                             
-                                             function updatePaginator(NR_RESULTS){
-                                             PAGE.set('totalRecords',NR_RESULTS);
-                                             PAGE.set('recordOffset',0);
-                                             }
-                                             
-                                             
-                                             function handlePagination(newState){
-                                             // Collect page data using the requested page number
-                                             //newState.
-                                             findMaterials(newState.recordOffset,newState.rowsPerPage,false,false);
-                                             // Update the Paginator's state
-                                             PAGE.setState(newState);
-                                             
-                                             }
-                                             
-                                             function selectParent(parent){
-                                             var childSelected = false;
-                                             
-                                             $(parent+'_rbo').childElements().each(function(el){
-                                                                                   if(el.hasClassName('facet-selected')) {
-                                                                                   $(parent).addClassName('parent-selected');
-                                                                                   childSelected = true;
-                                                                                   }
-                                                                                   });
-                                             
-                                             if(!childSelected)
-                                             $(parent).removeClassName('parent-selected');
-                                             }
-                                             
-                                             function toggleFacetValue(elem,parent){
-                                             $(elem).toggleClassName('facet-selected');
-                                             selectParent(parent);
-                                             findMaterials(0,PAGE_SIZE,true,false);
-                                             }
-                                             
-                                             function html_entity_decode(str) {
-                                             var ta=document.createElement("textarea");
-                                             ta.innerHTML=str.replace(/</g,"&lt;").replace(/>/g,"&gt;");
-                                             var val = ta.value;
-                                             ta.parentNode.removeChild(ta);
-                                             return val;
-                                             }
-                                             
-                                             function fullLangName(iso)
-                                             {
-                                             
-                                             var fullName = "";
-                                             
-                                             if (iso == "en")
-                                             fullName = langName["en"];
-                                             else if  (iso == "fr")
-                                             fullName = langName["fr"];
-                                             
-                                             
-                                             return fullName;
-                                             }
+/*--------------------CREATE EVERY ITEM BEFORE CALL RENDERING WITH JAML-------------------------*/
+var oddCtr = 0; /*counter to add the odd style in listing*/
+result.metadata.each(function(item,index){
+                  
+                  oddCtr++;
+                  item.isOdd = oddCtr;
+                  
+                  //console.log(item.id);
+                  
+                  if(item.format!=undefined && item.format[0]!=undefined){
+                  if (item.format[0].indexOf('pdf') != -1)
+                  item.format='images/icons/pdf.png';
+                  else if (item.format[0].indexOf('powerpoint') != -1)
+                  item.format='images/icons/ppt.png';
+                  else if (item.format[0].indexOf('video') != -1)
+                  item.format='images/icons/video.png';
+                  else if (item.format[0].indexOf('zip') != -1)
+                  item.format='images/icons/zip.png';
+                  else if (item.format[0].indexOf('audio') != -1)
+                  item.format='images/icons/audio.png';
+                  else if ((item.format[0].indexOf('text') != -1) ||(item.format[0].indexOf('multipart') != -1) )
+                  item.format='images/icons/text.png';
+                  else if ((item.format[0].indexOf('xml') != -1) )
+                  item.format='images/icons/xml.png';
+                  else if (item.format[0].indexOf('image') != -1)
+                  item.format='images/icons/image.png';
+                  //item.format=item.thumbnailUri;
+                  //item.format=item.location;
+                  else if ((item.format[0].indexOf('word')!= -1) || (item.format[0].indexOf('wordprocessingml')!= -1))
+                  item.format='images/icons/word.png';
+                  else if ((item.format[0].indexOf('application')!= -1))
+                  item.format='images/icons/application.png';
+                  else
+                  item.format='images/icons/application.png';
+                  
+                  }
+                  
+                  
+                  
+                  for(i=0,tmpSize=item.description.length;i<tmpSize;i++)
+                  {
+                  if(item.description[i].lang==SELECTED_LANGUAGE)
+                  item.thisDescription=item.description[i];
+                  }
+                  
+                  if(item.thisDescription==undefined){item.thisDescription = " There is no defined description for this language";}
+                  
+                  
+                  
+                  for(i=0,tmpSize=item.title.length;i<tmpSize;i++)
+                  {
+                  if(item.title[i].lang==SELECTED_LANGUAGE)
+                  item.thisTitle=item.title[i];
+                  }
+                  
+                  if(item.thisTitle==undefined){item.thisTitle = " There is no defined title for this language";}
+                  
+                  
+                  
+                  if(item.keywords == undefined || item.keywords == '')
+                  {
+                  $('search_results').insert(Jaml.render('resultwithoutkeywords',item));
+                  }
+                  else
+                  {
+                  
+                  try {item.keywords = item.keywords.split("&#044; ");} catch(e) {}
+                  
+                  var spt = item.title.split(",",1);
+                  item.title = spt[0];
+                  var length = spt[0].length;
+                  
+                  if (item.title[0] == '[')
+                  item.title = item.title.substring(1,length);
+                  else
+                  item.title = item.title.substring(0,length);
+                  
+                  spt = item.description.split(",",1);
+                  item.description=spt[0];
+                  length = spt[0].length;
+                  
+                  if (item.description[0] == '[')
+                  item.description = item.description.substring(1,length);
+                  else
+                  item.description =item.description.substring(0,length);
+                  
+                  item.isOdd = oddCtr;
+                  
+                  $('search_results').insert(Jaml.render('result',item));
+                  // alert("metaid:" +item.metaMetadataId);
+                  iter++;
+                  }
+                  
+                  
+                  });
+
+$('search_results_index').show();
+
+var finalNumberResults = ((start + numberResults) < result.nrOfResults)?(start + numberResults):result.nrOfResults;
+if(result.nrOfResults > 0) {
+$('search_results_index').update(' (#{start} - #{end} of #{total})'.interpolate({start: formatInteger(start + 1,THOUSAND_SEP), end: formatInteger(finalNumberResults,THOUSAND_SEP), total: formatInteger(result.nrOfResults,THOUSAND_SEP)}));
+pagination_show();
+}
+else {
+$('search_results_index').update('(No Results Found)');
+pagination_hide();
+}
+
+/* for facet presentation
+result.facets.each(function(item,index){
+
+//     item.title = item.title.substring(0,length);
+
+$('search_results').insert(Jaml.render('result2',item));
+
+});
+*/
+
+}
+
+
+/*if(!keyword.blank()){
+$('keywords_filter').show();
+$('kwv').update(keyword);
+}
+else{
+$('keywords_filter').hide();
+}*/
+
+if(needsUpdate){
+updatePaginator(result.nrOfResults);
+result.facets.each(function(item,index){
+                var fld = item.field;
+                //rbkey = facetKeys[fld];
+                var facetHasNoLimit = true;
+                var limitValues = [];
+                if (LIMIT_FACET_DISPLAY[fld]) {
+                limitValues = LIMIT_FACET_DISPLAY[fld];
+                facetHasNoLimit = false;
+                }
+                var rbkey = fld;
+                var element = $(rbkey + '_rbo');
+                if(element && facetExpressions.get(fld) == undefined){
+                element.update('');
+                if(item.numbers != undefined){
+                item.numbers.each(function(it2,idx2){
+                                  if (facetHasNoLimit || limitValues.indexOf(it2.val) >= 0) {
+                                  
+                                  
+                                  it2.field = fld;
+                                  
+                                  it2.val=it2.val.replace(/\'/g, "&#34;");
+                                                          it2.count = formatInteger(it2.count,THOUSAND_SEP);
+                                                          //element.insert(Jaml.render('rbcriteria',it2));
+                                                          if (fld!= "language")
+                                                          element.insert(Jaml.render('rbcriteria',it2));
+                                                          
+                                                          else
+                                                          // check first if langName[it2.val] exists already in rbList
+                                                          {
+                                                          checkLang(it2.val,it2.count);
+                                                          
+                                                          if (CHECK==0)
+                                                          element.insert(Jaml.render('rbcriteria2',it2));
+                                                          
+                                                          }
+                                                          }
+                                                          });
+                                  }
+                                  }
+                                  });
+                
+                
+                facetSlide();
+                
+                selectedFacets.each(function(item,index){
+                                    $(item.id).addClassName('facet-selected');
+                                    
+                                    });
+                }
+                //webSnapr.init();
+                //$('header').scrollTo();
+                //loadTranslator();
+                
+                
+                },
+                onComplete: function(transport){
+                // $('search_status').update('');
+                },
+                onLoading: function(){
+                $('search_results').update('');
+                $('search_terms').update('');
+                $('search_results_index').update('');
+                }
+                });
+}
+
+function checkLang(name,counter){
+
+CHECK=0;
+$$('#language_rbo li').each(function(item) {
+                         
+                         //  alert(item.innerHTML);
+                         
+                         var pos = item.id.indexOf(':');
+                         
+                         var langValue = item.id.substring(pos+1);
+                         
+                         if (langName[langValue]== langName[name])
+                         {
+                         //   pos = item.name.indexOf('/a');
+                         var count = item.innerHTML;
+                         pos = count.indexOf('/a');
+                         var length = count.length;
+                         count = item.innerHTML.substring(pos+5,length-1);
+                         
+                         count=count.replace("," ,"");
+                         var num = count*1;
+                         
+                         num = Number(num) + Number(counter);
+                         num = formatInteger(num,THOUSAND_SEP);
+                         
+                         item.update(item.innerHTML.substring(0,pos+4) + '(#{count})'.interpolate({count: num}));
+                         CHECK=1;
+                         
+                         return;
+                         }
+                         
+                         });
+
+
+}
+
+
+
+function addEndingDescription(data){
+if(data.length ==  0 )
+return "";
+return (data.length<END_DESCRIPTION)?data:(data.substr(START_DESCRIPTION,END_DESCRIPTION)).concat(""," <span class='suspension-points'>...</span>");
+}
+
+function removeHtmlTags(data) {
+var strInputCode = data.replace(/&(lt|gt);/g, function (strMatch, p1){
+                             return (p1 == "lt")? "<" : ">";
+                             });
+var strTagStrippedText = strInputCode.replace(/<\/?[^>]+(>|$)/g, " ");
+return strTagStrippedText;
+}
+
+function stripUrl(data) {
+
+var strTagStrippedText = data.replace(/<\/?[^>]:+(>|$)/g, "_");
+return strTagStrippedText;
+
+
+}
+
+
+
+
+function initializeJamlTemplates(){
+
+Jaml.register('thumb_pres', function(data) {
+           a({href: data.location,title: data.title , target: '_blank'}, img({src:data.format, height:"90", width:"80" }))
+           });
+
+
+Jaml.register('keyword', function(data) {
+           a({href:'javascript:void(0);', onclick: "searchByKeyword('#{key}')".interpolate({key: data})}, data);
+           });
+
+
+/*-----------------------------RENDER RESULT LISTING ITEMS--------------------------------*/
+
+
+Jaml.register('result', function(data){
+           
+           var keywordsToEmbed = "test_mathiou";
+           
+           
+           var odd = "";
+           if(data.isOdd%2===1){odd="odd"}
+           
+           //keywords
+           if(data.subject!=undefined){
+           for(var i=0 , length=data.subject.length; i<length;i++)
+           {
+           if(data.subject[i].lang=='en'){
+           if(i!==length-1)
+           {
+           keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.subject[i].value+"\">&nbsp"+data.subject[i].value+"</a>"
+           }
+           else
+           {
+           keywordsToEmbed +="<a class=\"secondary last\" href=\"listing.html?query="+data.subject[i].value.split(" ")[0]+"\">&nbsp"+data.subject[i].value+"</a>"
+           }
+           }//end lang check
+           
+           }//end for
+           }//end if
+           
+           //title
+           var thisTitle = "undefined";
+           if(data.title!=undefined)
+           {
+           thisTitle=data.title[0].value;
+           for(var i=0 , length=data.title.length; i<length;i++)
+           {
+           if(data.title[i].lang=='en'){
+           thisTitle = data.title[i].value
+           }//end lang check
+           
+           }//end for
+           }//end if
+           
+           //description
+           var thisDescription = "undefined";
+           if(data.description!=undefined)
+           {
+           thisDescription=data.description[0].value;
+           for(var i=0 , length=data.description.length; i<length;i++)
+           {
+           if(data.description[i].lang=='en'){
+           thisDescription = data.description[i].value
+           }//end lang check
+           
+           }//end for
+           }//end if
+           
+           var thisRights = data.licenseUri;
+           if(data.licenseUri==undefined){thisRights == "undefined";}
+           
+           var thisRights2 = data.rights;
+           if(data.rights==undefined){thisRights2 == "undefined";}
+           
+           article({class:'item-intro '+odd},
+                   header(
+                          h2(//img({src:imgThumb}),
+                             a({href:data.location,title: data.title, target: '_blank'},data.title)),
+                          section(p({cls:'item-intro-desc'}, data.description),
+                                  aside({cls:'clearfix'},
+                                        div({cls:'floatleft'},
+                                            div({cls:'line keywords'}, span("Keywords:"), keywordsToEmbed)),
+                                        div({cls:'language'}, span("Creative commons licence:"), thisRights),
+                                        div({cls:'language'}, span("Rights:"), thisRights2),
+                                        div({cls:'floatright'},
+                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id, cls:'moreinfo'}, "More Info")))))))
+           });
+
+
+
+
+Jaml.register('resultwithoutkeywords', function(data){
+           
+           //               odd++;
+           //               var backgroundClass = ""
+           //               if(odd%2===0){backgroundClass = "odd";}
+           var keywordsToEmbed = "test_mathiou 2";
+           
+           var odd = "";
+           if(data.isOdd%2===1){odd="odd"}
+           
+           
+           //keywords
+           if(data.subject!=undefined){
+           for(var i=0 , length=data.subject.length; i<length;i++)
+           {
+           if(data.subject[i].lang=='en'){
+           if(i!==length-1)
+           {
+           keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.subject[i].value+"\">&nbsp"+data.subject[i].value+"</a>"
+           }
+           else
+           {
+           keywordsToEmbed +="<a class=\"secondary last\" href=\"listing.html?query="+data.subject[i].value.split(" ")[0]+"\">&nbsp"+data.subject[i].value+"</a>"
+           }
+           }//end lang check
+           
+           }//end for
+           }//end if
+           
+           
+           var imgThumb = data.format;
+           if(data.contentType[0].toUpperCase() == 'IMAGE')
+           {
+           imgThumb = data.objectUri[0];
+           }
+           
+           //title
+           var thisTitle = "undefined";
+           if(data.title!=undefined)
+           {
+           thisTitle=data.title[0].value;
+           for(var i=0 , length=data.title.length; i<length;i++)
+           {
+           if(data.title[i].lang=='en'){
+           thisTitle = data.title[i].value
+           }//end lang check
+           
+           }//end for
+           }//end if
+           
+           //description
+           var thisDescription = "undefined";
+           if(data.description!=undefined)
+           {
+           thisDescription=data.description[0].value;
+           for(var i=0 , length=data.description.length; i<length;i++)
+           {
+           if(data.description[i].lang=='en'){
+           thisDescription = data.description[i].value
+           }//end lang check
+           
+           }//end for
+           }//end if
+           
+           
+           article({class:'item-intro ' +odd },
+                   header(
+                          h2(img({src:imgThumb}),
+                             a({href:data.objectUri[0], title: thisTitle, target: '_blank'},thisTitle)),
+                          section(p({cls:'item-intro-desc'}, thisDescription),
+                                  aside({cls:'clearfix'},
+                                        div({cls:'floatright'},
+                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id, cls:'moreinfo'}, "More Info")))))))});
+
+
+
+/*---------------------------------------------------------------------------------------------*/
+
+
+/* Jaml.register('rbcriteria', function(data)
+{
+
+
+li({id: data.field + ':' + data.val},
+a({href:'javascript:void(0);',title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})},
+data.val),'(#{count})'.interpolate({count: data.count})
+);
+});
+
+
+Jaml.register('rbcriteria2', function(data)
+{
+li({id: data.field + ':' + data.val},
+a({href:'javascript:void(0);',title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})},
+langName[data.val]),
+'(#{count})'.interpolate({count: data.count})
+);
+});*/
+
+/*---------------------------------------------------------------------------------------------*/
+/*-----------------------------RENDER FACETS--------------------------------*/
+
+
+
+Jaml.register('rbcriteria', function(data) //rest facets
+           {
+           
+           
+           //###
+          // alert(data.val);
+           
+           //removing HNHM from facets
+           var label = data.val;
+           if(data.val.indexOf('HNHM')!=-1){
+           label = data.val.split('HNHM')[1];}
+           
+           a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(label), span({cls:'total'}, data.count));
+           
+           
+           });
+
+
+Jaml.register('rbcriteria2', function(data) //language facet
+           {
+           
+           
+           
+           
+           
+           a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val, parent: data.field})}, span(langName[data.val]), span({cls:'total'}, data.count ));
+           
+           //              li({id: data.field + ':' + data.val},
+           //         a({href:'javascript:void(0);', title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},
+           //           span(langName[data.val]), span({cls:'total'}, data.count )));
+           });
+
+
+/*------------------------------*/
+}
+
+
+
+
+
+function facetSlide(){
+
+jQuery(document).ready(function(){
+                    
+                    jQuery('.filter_parent').each(function() {
+                                                  if(jQuery(this).hasClass("opened")) jQuery(this).next().css("display","block");
+                                                  });
+                    jQuery('.filter_parent').click(function(event){
+                                                   event.preventDefault();
+                                                   jQuery(this).toggleClass("opened");
+                                                   jQuery(this).next().slideToggle("slow");
+                                                   });
+                    exit();
+                    
+                    });
+}
+
+
+
+
+function updatePaginator(NR_RESULTS){
+PAGE.set('totalRecords',NR_RESULTS);
+PAGE.set('recordOffset',0);
+}
+
+
+function handlePagination(newState){
+// Collect page data using the requested page number
+//newState.
+findMaterials(newState.recordOffset,newState.rowsPerPage,false,false);
+// Update the Paginator's state
+PAGE.setState(newState);
+
+}
+
+function selectParent(parent){
+var childSelected = false;
+
+$(parent+'_rbo').childElements().each(function(el){
+                                   if(el.hasClassName('facet-selected')) {
+                                   $(parent).addClassName('parent-selected');
+                                   childSelected = true;
+                                   }
+                                   });
+
+if(!childSelected)
+$(parent).removeClassName('parent-selected');
+}
+
+function toggleFacetValue(elem,parent){
+$(elem).toggleClassName('facet-selected');
+selectParent(parent);
+findMaterials(0,PAGE_SIZE,true,false);
+}
+
+function html_entity_decode(str) {
+var ta=document.createElement("textarea");
+ta.innerHTML=str.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+var val = ta.value;
+ta.parentNode.removeChild(ta);
+return val;
+}
+
+function fullLangName(iso)
+{
+
+var fullName = "";
+
+if (iso == "en")
+fullName = langName["en"];
+else if  (iso == "fr")
+fullName = langName["fr"];
+
+
+return fullName;
+}
                                              
