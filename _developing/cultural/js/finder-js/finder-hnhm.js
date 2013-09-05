@@ -228,25 +228,7 @@ function initializeFinder(){
 		div.push('<div id="search_results"></div>');
 		div.push('</div>');
 		$('insert_results').update(div.join(''));
-        //		if (!$('insert_moreResults')) {
-        //			$('body').insert('<div id="insert_moreResults" style="display:none"></div>');
-        //		}
-        //		var div = [];
-        //		div.push('<div id="moreResults"><h3>More Results</h3>');
-        //		for (var i=0;i<EXT_SOURCES.length;i++){
-        //			var es = EXT_SOURCES[i];
-        //			var esn = AVAILABLE_ES[es]['name'];
-        //			div.push('<div id="'+es+'_search" class="ext-res-div">');
-        //			div.push('<a class="ext-res" onclick="getExternalSourceResult(\''+es+'\');" href="javascript:void(0)" title="'+esn+'">'+esn+'</a>');
-        //			div.push('<span id="'+es+'_indicator" style="display:none"><img src="'+ROOT_URL+'common/images/indicator.gif"></span>');
-        //			div.push('<span id="'+es+'_results"></span>');
-        //			div.push('</DIV>');
-        //		}
-        //		div.push('</DIV>');
-        // 		$('insert_moreResults').update(div.join(''));
-        
-        
-        
+
         
 		initializeJamlTemplates();
 		PAGE = new YAHOO.widget.Paginator({
@@ -547,30 +529,30 @@ result.metadata.each(function(item,index){
                   oddCtr++;
                   item.isOdd = oddCtr;
                   
-                  //console.log(item.id);
+                  console.log(item);
                   
                   if(item.format!=undefined && item.format[0]!=undefined){
-                  if (item.format[0].indexOf('pdf') != -1)
+                  if (item.format.indexOf('pdf') != -1)
                   item.format='images/icons/pdf.png';
-                  else if (item.format[0].indexOf('powerpoint') != -1)
+                  else if (item.format.indexOf('powerpoint') != -1)
                   item.format='images/icons/ppt.png';
-                  else if (item.format[0].indexOf('video') != -1)
+                  else if (item.format.indexOf('video') != -1)
                   item.format='images/icons/video.png';
-                  else if (item.format[0].indexOf('zip') != -1)
+                  else if (item.format.indexOf('zip') != -1)
                   item.format='images/icons/zip.png';
-                  else if (item.format[0].indexOf('audio') != -1)
+                  else if (item.format.indexOf('audio') != -1)
                   item.format='images/icons/audio.png';
-                  else if ((item.format[0].indexOf('text') != -1) ||(item.format[0].indexOf('multipart') != -1) )
+                  else if ((item.format.indexOf('text') != -1) ||(item.format[0].indexOf('multipart') != -1) )
                   item.format='images/icons/text.png';
-                  else if ((item.format[0].indexOf('xml') != -1) )
+                  else if ((item.format.indexOf('xml') != -1) )
                   item.format='images/icons/xml.png';
-                  else if (item.format[0].indexOf('image') != -1)
+                  else if (item.format.indexOf('image') != -1)
                   item.format='images/icons/image.png';
                   //item.format=item.thumbnailUri;
                   //item.format=item.location;
-                  else if ((item.format[0].indexOf('word')!= -1) || (item.format[0].indexOf('wordprocessingml')!= -1))
+                  else if ((item.format.indexOf('word')!= -1) || (item.format.indexOf('wordprocessingml')!= -1))
                   item.format='images/icons/word.png';
-                  else if ((item.format[0].indexOf('application')!= -1))
+                  else if ((item.format.indexOf('application')!= -1))
                   item.format='images/icons/application.png';
                   else
                   item.format='images/icons/application.png';
@@ -878,7 +860,7 @@ Jaml.register('result', function(data){
            article({class:'item-intro '+odd},
                    header(
                           h2(//img({src:imgThumb}),
-                             a({href:data.location,title: data.title, target: '_blank'},data.title)),
+                             a({href:"item.html?id="+data.id,title: data.title, target: '_blank'},data.title)),
                           section(p({cls:'item-intro-desc'}, data.description),
                                   aside({cls:'clearfix'},
                                         div({cls:'floatleft'},
@@ -960,7 +942,7 @@ Jaml.register('resultwithoutkeywords', function(data){
            article({class:'item-intro ' +odd },
                    header(
                           h2(img({src:imgThumb}),
-                             a({href:data.objectUri[0], title: thisTitle, target: '_blank'},thisTitle)),
+                             a({href:"item.html?id="+data.id, title: thisTitle, target: '_blank'},thisTitle)),
                           section(p({cls:'item-intro-desc'}, thisDescription),
                                   aside({cls:'clearfix'},
                                         div({cls:'floatright'},
@@ -968,30 +950,7 @@ Jaml.register('resultwithoutkeywords', function(data){
 
 
 
-/*---------------------------------------------------------------------------------------------*/
 
-
-/* Jaml.register('rbcriteria', function(data)
-{
-
-
-li({id: data.field + ':' + data.val},
-a({href:'javascript:void(0);',title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})},
-data.val),'(#{count})'.interpolate({count: data.count})
-);
-});
-
-
-Jaml.register('rbcriteria2', function(data)
-{
-li({id: data.field + ':' + data.val},
-a({href:'javascript:void(0);',title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})},
-langName[data.val]),
-'(#{count})'.interpolate({count: data.count})
-);
-});*/
-
-/*---------------------------------------------------------------------------------------------*/
 /*-----------------------------RENDER FACETS--------------------------------*/
 
 
