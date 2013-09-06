@@ -228,24 +228,6 @@ function initializeFinder(){
 		div.push('<div id="search_results"></div>');
 		div.push('</div>');
 		$('insert_results').update(div.join(''));
-        //		if (!$('insert_moreResults')) {
-        //			$('body').insert('<div id="insert_moreResults" style="display:none"></div>');
-        //		}
-        //		var div = [];
-        //		div.push('<div id="moreResults"><h3>More Results</h3>');
-        //		for (var i=0;i<EXT_SOURCES.length;i++){
-        //			var es = EXT_SOURCES[i];
-        //			var esn = AVAILABLE_ES[es]['name'];
-        //			div.push('<div id="'+es+'_search" class="ext-res-div">');
-        //			div.push('<a class="ext-res" onclick="getExternalSourceResult(\''+es+'\');" href="javascript:void(0)" title="'+esn+'">'+esn+'</a>');
-        //			div.push('<span id="'+es+'_indicator" style="display:none"><img src="'+ROOT_URL+'common/images/indicator.gif"></span>');
-        //			div.push('<span id="'+es+'_results"></span>');
-        //			div.push('</DIV>');
-        //		}
-        //		div.push('</DIV>');
-        // 		$('insert_moreResults').update(div.join(''));
-        
-        
         
         
 		initializeJamlTemplates();
@@ -546,9 +528,9 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                               oddCtr++;
                               item.isOdd = oddCtr;
                               
-                            // alert(JSON.stringify(item));
+                            console.log(JSON.stringify(item));
                               
-                              if(item.format[0]!=undefined){
+                              if(item.format!=undefined && item.format[0]!=undefined){
                               if (item.format[0].indexOf('pdf') != -1)
                               item.format='images/icons/pdf.png';
                               else if (item.format[0].indexOf('powerpoint') != -1)
@@ -572,8 +554,11 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                               else if ((item.format[0].indexOf('application')!= -1))
                               item.format='images/icons/application.png';
                               else
-                              item.format='images/icons/application.png';
-                              
+                              	item.format='images/icons/application.png';
+                              }
+                              else
+                              {
+                              	item.format='images/icons/application.png';
                               }
                               
                               
