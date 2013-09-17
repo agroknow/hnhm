@@ -815,8 +815,10 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                       aside({cls:'clearfix'},
                                             div({cls:'floatleft'},
                                                 div({cls:'line keywords'}, span("Keywords:"), keywordsToEmbed)),
+/*
                                             div({cls:'language'}, span("Creative commons licence:"), thisRights),
                                             div({cls:'language'}, span("Rights:"), thisRights2),
+*/
                                             div({cls:'floatright'},
                                                 div({cls:'line alignright'}, a({href:"item.html?id="+id, cls:'moreinfo'}, "More Info")))))))
                });
