@@ -112,6 +112,7 @@ langName['sv']= 'Swedish';
 langName['ell']= 'Greek';
 langName ['lat'] = 'Latin';
 langName['rus'] = 'Russian';
+langName['hu'] = 'Hungarian';
 
 
 google.load("language", "1");
@@ -141,6 +142,7 @@ function initializeFinder(){
 		if(typeof customizeFinder == 'function') {
 			var customParams = customizeFinder();
             var urlSelectedProviders = getUrlVars()["providers"];
+            var urlSelectedLanguage = getUrlVars()["lang"];
             
 			if(customParams) {
                 /*limit collection|providers*/
@@ -150,6 +152,14 @@ function initializeFinder(){
                 }
                 if (!urlSelectedProviders && customParams.selectedProviders) SELECTED_PROVIDERS = customParams.selectedProviders;
                 //alert(SELECTED_PROVIDERS);
+                /*---*/
+                
+                /*language selection*/
+                if(urlSelectedLanguage)
+                {
+                    SELECTED_LANGUAGE = urlSelectedLanguage;
+                }
+                if (!urlSelectedLanguage && customParams.selectedLanguage) SELECTED_LANGUAGE = customParams.selectedLanguage;
                 /*---*/
                 
 				if (customParams.serviceUrl) SERVICE_URL = customParams.serviceUrl;
@@ -204,7 +214,7 @@ function initializeFinder(){
 		for (var i=0;i<FACET_TOKENS.length;i++)
         {
 			var fn = FACET_TOKENS[i];
-			div.push('<a href="#" id="'+fn+'" onclick="return false;" class="filter_parent"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child" style="display: none; overflow: hidden;height:auto;"></div>');
+			div.push('<a href="#" id="'+fn+'" onclick="return false;" class="filter_parent"><span data_translation="'+fn+'">'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child" style="display: none; overflow: hidden;height:auto;"></div>');
 			
 		}
         
@@ -602,7 +612,9 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
 
 
                               });
-                                             
+                              
+                         language();
+                                                              
 			 $('search_results_index').show();
 			 
 			 var finalNumberResults = ((start + numberResults) < result.nrOfResults)?(start + numberResults):result.nrOfResults;
@@ -820,7 +832,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                             div({cls:'language'}, span("Rights:"), thisRights2),
 */
                                             div({cls:'floatright'},
-                                                div({cls:'line alignright'}, a({href:"item.html?id="+id, cls:'moreinfo'}, "More Info")))))))
+                                                div({cls:'line alignright'}, a({href:"item.html?id="+id+"&lang="+SELECTED_LANGUAGE, cls:'moreinfo', data_translation:"more_info"}, "More Info")))))))
                });
  
  
@@ -881,7 +893,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
 										//div({cls:'language'}, span("Creative commons licence:"), thisRights),
 										//div({cls:'language'}, span("Rights:"), thisRights2),
                                             div({cls:'floatright'},
-                                                div({cls:'line alignright'}, a({href:"item.html?id="+id, cls:'moreinfo'}, "More Info")))))))});
+                                                div({cls:'line alignright'}, a({href:"item.html?id="+id+"&lang="+SELECTED_LANGUAGE, cls:'moreinfo', data_translation:"more_info"}, "More Info")))))))});
  
  
 

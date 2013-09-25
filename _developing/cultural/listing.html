@@ -61,9 +61,11 @@
             
             
             <!---------------------------------- end listing related-->
+        <!--languages scripts -->
+        <script src="js/language.js"></script>
         
     </head>
-    <body>
+    <body onload="language()">
         
         <!-- Layout -->
         <div id="header-region" class="clear-block"><div id="block-block-3" class="clear-block block block-block">
@@ -79,16 +81,28 @@
         <div id="wrapper">
             <div id="container" class="clear-block">
                 <div id="felsomenusor">
-                    <ul class="links primary-links"><li class="menu-185 first active"><a href="/en" title="Back to the main page" class="active">MAIN PAGE</a></li>
-                        <li class="menu-428"><a href="/en/information" title="Information">INFORMATION</a></li>
-                        <li class="menu-818"><a href="/en/exhibitions/temporary" title="Permanent exhibitions">EXHIBITIONS</a></li>
-                        <li class="menu-837"><a href="/en/mused/general" title="Museum education">MUSEUM EDUCATION</a></li>
-                        <li class="menu-869 last"><a href="/en/museum/coll_res" title="COLLECTIONS">COLLECTIONS</a></li>
+                    
+                    <ul class="links primary-links "><li class="menu-185 first active"><a href="/en" title="Back to the main page" class="active fNiv" data_translation="main_page">MAIN PAGE</a></li>
+                        <li class="menu-428"><a href="/en/information" title="Information" data_translation="information">INFORMATION</a></li>
+                        <li class="menu-818"><a href="/en/exhibitions/temporary" title="Permanent exhibitions" data_translation="exhibitions">EXHIBITIONS</a></li>
+                        <li class="menu-837"><a href="/en/mused/general" title="Museum education" data_translation="museum_education">MUSEUM EDUCATION</a></li>
+                        <li class="menu-869 last"><a href="/en/museum/coll_res" title="COLLECTIONS" data_translation="collections">COLLECTIONS</a></li>
                     </ul>          <div>
                     </div>
-                    <ul class="links"><li class="en first active"><a href="/en" class="language-link active"><img src='style/images/en.png'  class="language-icon" alt="English" title="English" width="24" height="12" /></a></li>
-                        <li class="hu last"><a href="/hu" class="language-link"><img src='style/images/hu.png'  class="language-icon" alt="Magyar" title="Magyar" width="24" height="12" /></a></li>
-                    </ul>		  <div id="smalls"><a href="http://akadalymentes.mttm.hu/index.html" border="0"><img src="style/images/mentes_logo_bl.gif" border="0" alt="Akad�lymentes v�ltozat"></a></div>
+                    <ul class="links">
+                    <li class="en first active">
+                    <a href="#" onclick="changeLanguage('en')" class="language-link active"> <!-- href="/en" -->
+                    <img src='style/images/en.png'  class="language-icon" alt="English" title="English" width="24" height="12" /></a>
+                    </li>
+                        <li class="hu last">
+                        <a href="#" onclick="changeLanguage('hu')" class="language-link"> <!-- href="/hu" -->
+                        <img src='style/images/hu.png'  class="language-icon" alt="Magyar" title="Magyar" width="24" height="12" />
+                        </a>
+                    </li>
+                    </ul>			  
+                    
+                    
+                    <div id="smalls"><a href="http://akadalymentes.mttm.hu/index.html" border="0"><img src="style/images/mentes_logo_bl.gif" border="0" alt="Akad�lymentes v�ltozat"></a></div>
                     <div id="smalls2"><a href="https://www.facebook.com/mttmuzeum" border="0" target="_blank"><img src="style/images/f_logo.png" border="0" alt="Facebook"></a></div>
                     
                     
