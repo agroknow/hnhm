@@ -1333,6 +1333,63 @@ ul.pagination li a.next {
 
 /* ITEM VIEW */
 
+.labels
+{
+	color:#217F60;
+	font-size:1.2em; 
+}
+
+.item_label{
+    color :  #217F60;
+    font-size : 1.2em;
+}
+
+.item_value{
+    color: #41647b;
+    font-size:14px;
+    margin:10px 0px;
+}
+
+
+
+#item_title{
+    font-size:19px;
+    color: #217f60;
+    text-decoration:none;
+    background-color:none;
+}
+
+#item_title a{
+	color:#41647B;
+    font-size:1.1em;
+    font-weight: normal;
+    background-color:none;
+}
+
+#item_title a:hover{
+    font-size:1.1em;
+    font-weight: normal;
+    background:none !important;
+}
+
+#itemThumb{
+    float: left;
+    margin-top:50px;
+}
+
+#itemThumb img{
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    max-width: 200px;
+    -webkit-box-shadow: 1px 1px 4px #000000;
+	-moz-box-shadow: 1px 1px 4px #000000;
+	-o-box-shadow: 1px 1px 4px #000000;
+	-ms-box-shadow: 1px 1px 4px #000000;
+	box-shadow: 1px 1px 4px #000000;
+}
+
+
 a.backbutton {
 	padding-left:30px;
 	height:25px;
