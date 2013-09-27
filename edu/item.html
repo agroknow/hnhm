@@ -42,15 +42,11 @@
         <link type="text/css" rel="stylesheet" media="all" href="style/my-style.css" />
         
         <script type="text/javascript" src="js/ariadne-json.js"></script>
-        
-        
+
+                        
         <script type="text/javascript">
             function getItem()
             {
-                //getItemJSONP('http://83.212.96.219:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1]);
-                //experiment('http://83.212.96.219:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1]);
-                
-               // getItemJSONP(location.search.split("=")[1]);
                 getItemJSONP('http://83.212.96.219:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1]);
             }
             </script>
@@ -73,16 +69,27 @@
         <div id="wrapper">
             <div id="container" class="clear-block">
                 <div id="felsomenusor">
-                    <ul class="links primary-links"><li class="menu-185 first active"><a href="/en" title="Back to the main page" class="active">MAIN PAGE</a></li>
-                        <li class="menu-428"><a href="/en/information" title="Information">INFORMATION</a></li>
-                        <li class="menu-818"><a href="/en/exhibitions/temporary" title="Permanent exhibitions">EXHIBITIONS</a></li>
-                        <li class="menu-837"><a href="/en/mused/general" title="Museum education">MUSEUM EDUCATION</a></li>
-                        <li class="menu-869 last"><a href="/en/museum/coll_res" title="COLLECTIONS">COLLECTIONS</a></li>
+                    <ul class="links primary-links "><li class="menu-185 first active"><a href="/en" title="Back to the main page" class="active fNiv" data_translation="main_page">MAIN PAGE</a></li>
+                        <li class="menu-428"><a href="/en/information" title="Information" data_translation="information">INFORMATION</a></li>
+                        <li class="menu-818"><a href="/en/exhibitions/temporary" title="Permanent exhibitions" data_translation="exhibitions">EXHIBITIONS</a></li>
+                        <li class="menu-837"><a href="/en/mused/general" title="Museum education" data_translation="museum_education">MUSEUM EDUCATION</a></li>
+                        <li class="menu-869 last"><a href="/en/museum/coll_res" title="COLLECTIONS" data_translation="collections">COLLECTIONS</a></li>
                     </ul>          <div>
                     </div>
-                    <ul class="links"><li class="en first active"><a href="/en" class="language-link active"><img src='style/images/en.png'  class="language-icon" alt="English" title="English" width="24" height="12" /></a></li>
-                        <li class="hu last"><a href="/hu" class="language-link"><img src='style/images/hu.png'  class="language-icon" alt="Magyar" title="Magyar" width="24" height="12" /></a></li>
-                    </ul>		  <div id="smalls"><a href="http://akadalymentes.mttm.hu/index.html" border="0"><img src="style/images/mentes_logo_bl.gif" border="0" alt="Akad�lymentes v�ltozat"></a></div>
+                    <ul class="links">
+                    <li class="en first active">
+                    <a href="#" onclick="changeLanguage('en')" class="language-link active"> <!-- href="/en" -->
+                    <img src='style/images/en.png'  class="language-icon" alt="English" title="English" width="24" height="12" /></a>
+                    </li>
+                        <li class="hu last">
+                        <a href="#" onclick="changeLanguage('hu')" class="language-link"> <!-- href="/hu" -->
+                        <img src='style/images/hu.png'  class="language-icon" alt="Magyar" title="Magyar" width="24" height="12" />
+                        </a>
+                    </li>
+                    </ul>	
+                    
+                    
+                    <div id="smalls"><a href="http://akadalymentes.mttm.hu/index.html" border="0"><img src="style/images/mentes_logo_bl.gif" border="0" alt="Akad�lymentes v�ltozat"></a></div>
                     <div id="smalls2"><a href="https://www.facebook.com/mttmuzeum" border="0" target="_blank"><img src="style/images/f_logo.png" border="0" alt="Facebook"></a></div>
                     
                     
@@ -195,28 +202,12 @@
                                                         <span  class="item_value" id="item_description"></span>
                                                     </li>
                                                     <li >
-                                                        <span class="item_label">Creator:</span>
-                                                        <span  class="item_value" id="item_creator"></span>
-                                                    </li>
-                                                    <li >
                                                         <span class="item_label">Keywords:</span>
                                                         <span  class="item_value" id="item_keywords"></span>
                                                     </li>
                                                     <li >
-                                                        <span class="item_label">Language:</span>
-                                                        <span  class="item_value" id="item_language"></span>
-                                                    </li>
-                                                    <li >
                                                         <span class="item_label">Copyrights:</span>
                                                         <span  class="item_value" id="item_copyrights"></span>
-                                                    </li>
-                                                    <li >
-                                                        <span class="item_label">Relation:</span>
-                                                        <span  class="item_value" id="item_relation"></span>
-                                                    </li>
-                                                    <li >
-                                                        <span class="item_label">Creative Common License:</span>
-                                                        <span  class="item_value" id="item_common_license"></span>
                                                     </li>
                                                 </ul>
 

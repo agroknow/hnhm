@@ -41,11 +41,10 @@
         <link rel="stylesheet" href="style/my-style.css" />
 
         <!--more js-->
-		<!--languages scripts -->
-        <script src="js/language.js"></script>
+        <script type="text/javascript" src="js/ariadne-json.js"></script>
         
     </head>
-    <body onload="language()"><!--class="sidebar-left"-->
+    <body ><!--class="sidebar-left"-->
         
         <!-- Layout -->
         <div id="header-region" class="clear-block"><div id="block-block-3" class="clear-block block block-block">
@@ -61,28 +60,16 @@
         <div id="wrapper">
             <div id="container" class="clear-block ">
                 <div id="felsomenusor">
-                    <ul class="links primary-links "><li class="menu-185 first active"><a href="/en" title="Back to the main page" class="active fNiv" data_translation="main_page">MAIN PAGE</a></li>
-                        <li class="menu-428"><a href="/en/information" title="Information" data_translation="information">INFORMATION</a></li>
-                        <li class="menu-818"><a href="/en/exhibitions/temporary" title="Permanent exhibitions" data_translation="exhibitions">EXHIBITIONS</a></li>
-                        <li class="menu-837"><a href="/en/mused/general" title="Museum education" data_translation="museum_education">MUSEUM EDUCATION</a></li>
-                        <li class="menu-869 last"><a href="/en/museum/coll_res" title="COLLECTIONS" data_translation="collections">COLLECTIONS</a></li>
+                    <ul class="links primary-links "><li class="menu-185 first active"><a href="/en" title="Back to the main page" class="active fNiv">MAIN PAGE</a></li>
+                        <li class="menu-428"><a href="/en/information" title="Information">INFORMATION</a></li>
+                        <li class="menu-818"><a href="/en/exhibitions/temporary" title="Permanent exhibitions">EXHIBITIONS</a></li>
+                        <li class="menu-837"><a href="/en/mused/general" title="Museum education">MUSEUM EDUCATION</a></li>
+                        <li class="menu-869 last"><a href="/en/museum/coll_res" title="COLLECTIONS">COLLECTIONS</a></li>
                     </ul>          <div>
                     </div>
-                    <ul class="links">
-                    <li class="en first active">
-                    <a href="#" onclick="changeLanguage('en')" class="language-link active"> <!-- href="/en" -->
-                    <img src='style/images/en.png'  class="language-icon" alt="English" title="English" width="24" height="12" /></a>
-                    </li>
-                        <li class="hu last">
-                        <a href="#" onclick="changeLanguage('hu')" class="language-link"> <!-- href="/hu" -->
-                        <img src='style/images/hu.png'  class="language-icon" alt="Magyar" title="Magyar" width="24" height="12" />
-                        </a>
-                    </li>
-                    </ul>		  
-                     
-                     
-                     
-                     <div id="smalls"><a href="http://akadalymentes.mttm.hu/index.html" border="0"><img src="style/images/mentes_logo_bl.gif" border="0" alt="Akad�lymentes v�ltozat"></a></div>
+                    <ul class="links"><li class="en first active"><a href="/en" class="language-link active"><img src='style/images/en.png'  class="language-icon" alt="English" title="English" width="24" height="12" /></a></li>
+                        <li class="hu last"><a href="/hu" class="language-link"><img src='style/images/hu.png'  class="language-icon" alt="Magyar" title="Magyar" width="24" height="12" /></a></li>
+                    </ul>		  <div id="smalls"><a href="http://akadalymentes.mttm.hu/index.html" border="0"><img src="style/images/mentes_logo_bl.gif" border="0" alt="Akad�lymentes v�ltozat"></a></div>
                     <div id="smalls2"><a href="https://www.facebook.com/mttmuzeum" border="0" target="_blank"><img src="style/images/f_logo.png" border="0" alt="Facebook"></a></div>
                     
                     
@@ -124,7 +111,7 @@
                     <!-------------------------------------------------------- start search-->
                     
                     <section id="main">
-                        <div class="sorting"><a style="color:white; font-size:12px;" href="" data_translation="home_page">Home Page</a></div>
+                        <div class="sorting"><a style="color:white; font-size:12px;" href="">Home Page</a></div>
                         <section id="search">
                             
                             <div class="moduletable_mainsearch">
@@ -144,12 +131,37 @@
                 
                 <!-------------------------------------------------------- end search-->
                 
+                <!-------------------------------------------------------- Treasures
+                <section class="icons_nav treasures">
+                    <nav class="aligncenter">
+                        <a href="listing.html?query=keyword:anthropology,paleontology" class="trea0"><span>From the past</span></a>
+                        <a href="listing.html?query=natural+phenomena" class="trea2"><span>Life in Nature</span></a>
+                        <a href="listing.html?query=wood booklet" class="trea1"><span>Wood Booklet</span></a>
+                    </nav>
+                </section>
+                
+                <!-------------------------------------------------------- end  Treasures-->
+                
+                
+                <!-------------------------------------------------------- Life and Earth
+                <section class="icons_nav life_earth">
+                    <nav class="aligncenter">
+                        <a href="listing.html?query=keyword:mineralogy" class="le0">Minerals</a>
+                        <a href="listing.html?query=plantae" class="le1">Botany</a>
+                        <a href="listing.html?query=animalia" class="le2">Zoology</a>
+                        <a href="listing.html?query=rock meteorite" class="le3">Rocks</a>
+                    </nav>
+                </section>
+                
+                <!-------------------------------------------------------- end Life & Earth-->
+
+                
                 <!--highlighted specimens-->
                 <div class="twocols clearfix lower_page">
                     
                     <div>
                         <div class="moduletable slidermodule">
-                            <h3 class="yellow_decoration" data_translation="highlighted_pathways_from_other_museums">Highlighted Pathways from other Museums</h3>
+                            <h3 class="yellow_decoration">Highlighted Pathways from other Museums</h3>
                             <div class="articles_mod_list is_slider" style="position: relative; width: 353px; height:480px;" >
                                 
                                 <!-- page 1 -->
@@ -205,7 +217,7 @@
                     
                     <div class="width330">
                         <div class="moduletable slidermodule">
-                            <h3 class="green_decoration" data_translation="teachers_pathways">Teachers Pathways</h3>
+                            <h3 class="green_decoration">Teachers Pathways</h3>
                             <div class="articles_mod_list " style="position: relative; width: 353px; height:400px;"> 
                                 
                                 

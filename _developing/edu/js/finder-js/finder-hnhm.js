@@ -600,20 +600,15 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                               }
                               else
                               {
-                              
-                              try {item.keywords = item.keywords.split("&#044; ");} catch(e) {}
-                              
-                               item.isOdd = oddCtr;
-                              
-                              $('search_results').insert(Jaml.render('result',item));
-                              // alert("metaid:" +item.metaMetadataId);
-                              iter++;
+								  try {item.keywords = item.keywords.split("&#044; ");} catch(e) {}
+	                              item.isOdd = oddCtr;
+	                              $('search_results').insert(Jaml.render('result',item));
+	                              iter++;
                               }
 
 
                               });
                               
-                         language();
                                                               
 			 $('search_results_index').show();
 			 
@@ -788,22 +783,9 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                if(data.isOdd%2===1){odd="odd"}
                
                //keywords
-               if(data.subject!=undefined){
-               for(var i=0 , length=data.subject.length; i<length;i++)
-               {
-               if(data.subject[i].lang=='en'){
-               if(i!==length-1)
-               {
-               keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.subject[i].value+"\">&nbsp"+data.subject[i].value+"</a>"
-               }
-               else
-               {
-               keywordsToEmbed +="<a class=\"secondary last\" href=\"listing.html?query="+data.subject[i].value.split(" ")[0]+"\">&nbsp"+data.subject[i].value+"</a>"
-               }
-               }//end lang check
-               
-               }//end for
-               }//end if
+               if(data.keywords!=undefined && data.keywords[0].value!=undefined){
+	              keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.keywords[0].value+"\">&nbsp"+data.keywords[0].value+"</a>"
+		              }//end if
                
 
                

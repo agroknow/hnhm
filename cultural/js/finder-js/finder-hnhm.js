@@ -542,7 +542,7 @@ result.metadata.each(function(item,index){
                   item.format='images/icons/zip.png';
                   else if (item.format.indexOf('audio') != -1)
                   item.format='images/icons/audio.png';
-                  else if ((item.format.indexOf('text') != -1) ||(item.format[0].indexOf('multipart') != -1) )
+                  else if ((item.format.indexOf('text') != -1) ||(item.format.indexOf('multipart') != -1) )
                   item.format='images/icons/text.png';
                   else if ((item.format.indexOf('xml') != -1) )
                   item.format='images/icons/xml.png';

@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="alternate" type="application/rss+xml" title="Hungarian Natural History Museum RSS" href="http://www.nhmus.hu/en/rss.xml" />
+        <link rel="shortcut icon" href="/misc/favicon.ico" type="image/x-icon" />
+        <title>Hungarian Natural History Museum</title>
+      <!--<link type="text/css" rel="stylesheet" media="all" href="/modules/aggregator/aggregator.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/book/book.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/cck/theme/content-module.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/date/date.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/date/date_popup/themes/datepicker.1.7.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/date/date_popup/themes/jquery.timeentry.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/node/node.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/poll/poll.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/system/defaults.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/system/system.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/system/system-menus.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/user/user.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/wysiwyg_imageupload/plugins/imgupload/imgupload.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/misc/farbtastic/farbtastic.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/calendar/calendar.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/cck/modules/fieldgroup/fieldgroup.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/modules/views/css/views.css?o" />
+        <link type="text/css" rel="stylesheet" media="all" href="/themes/garland/style.css?o" />
+        <link type="text/css" rel="stylesheet" media="print" href="/themes/garland/print.css?o" />
+        <script type="text/javascript" src="/misc/swfobject.js"></script>
+        <script type="text/javascript" src="/misc/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="/misc/jquery.colorBlend.min.js"></script>
+        <script type="text/javascript" src="/misc/nhmus.js"></script>-->
+        <!--[if lt IE 7]>
+         <link type="text/css" rel="stylesheet" media="all" href="/themes/garland/fix-ie.css" />    <![endif]-->
+        
+        
+        <!---------------------------------- start item related-->
+        
+        <!-- more css -->
+        <link rel="stylesheet" href="style/select2.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="style/style.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="style/my-style.css" />
+        
+        <script type="text/javascript" src="js/ariadne-json.js"></script>
+		<!--languages scripts -->
+        <script src="js/language.js"></script>
+        <!--end nhmc-->
+                
+        
+        <script type="text/javascript">
+            function getItem()
+            {
+            	var lang = "en";
+            	if(getUrlVars()["lang"]!=undefined)
+            	{
+	            	lang=getUrlVars()["lang"];
+            	} 
+                getItemJSONP('http://83.212.96.219:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1], lang);
+            }
+            </script>
+        <!---------------------------------- end item related-->
+        
+    </head>
+    <body onload="getItem(), language()">
+        
+        <!-- Layout -->
+        <div id="header-region" class="clear-block"><div id="block-block-3" class="clear-block block block-block">
+            
+            
+            <div class="content"><div id="fejlec_fooldal_a">
+                <div>&nbsp;</div>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+        <div id="wrapper">
+            <div id="container" class="clear-block">
+                <div id="felsomenusor">
+                    <ul class="links primary-links "><li class="menu-185 first active"><a href="/en" title="Back to the main page" class="active fNiv" data_translation="main_page">MAIN PAGE</a></li>
+                        <li class="menu-428"><a href="/en/information" title="Information" data_translation="information">INFORMATION</a></li>
+                        <li class="menu-818"><a href="/en/exhibitions/temporary" title="Permanent exhibitions" data_translation="exhibitions">EXHIBITIONS</a></li>
+                        <li class="menu-837"><a href="/en/mused/general" title="Museum education" data_translation="museum_education">MUSEUM EDUCATION</a></li>
+                        <li class="menu-869 last"><a href="/en/museum/coll_res" title="COLLECTIONS" data_translation="collections">COLLECTIONS</a></li>
+                    </ul>          <div>
+                    </div>
+                    <ul class="links">
+                    <li class="en first active">
+                    <a href="#" onclick="changeLanguage('en')" class="language-link active"> <!-- href="/en" -->
+                    <img src='style/images/en.png'  class="language-icon" alt="English" title="English" width="24" height="12" /></a>
+                    </li>
+                        <li class="hu last">
+                        <a href="#" onclick="changeLanguage('hu')" class="language-link"> <!-- href="/hu" -->
+                        <img src='style/images/hu.png'  class="language-icon" alt="Magyar" title="Magyar" width="24" height="12" />
+                        </a>
+                    </li>
+                    </ul>	
+                    
+                    
+                    <div id="smalls"><a href="http://akadalymentes.mttm.hu/index.html" border="0"><img src="style/images/mentes_logo_bl.gif" border="0" alt="Akad�lymentes v�ltozat"></a></div>
+                    <div id="smalls2"><a href="https://www.facebook.com/mttmuzeum" border="0" target="_blank"><img src="style/images/f_logo.png" border="0" alt="Facebook"></a></div>
+                    
+                    
+                    
+                    
+                </div>
+                <div id="header">
+                    <div id="logo-floater">
+                    </div>
+                </div> <!-- /header -->
+          
+                
+                <!--center-->
+                <div id="center">
+                    <!-------------------------------------------------------- start item-->
+                    
+                    <section id="main">
+                        <div class="sorting"><a style="color:white; font-size:12px;" href="index.html">Home Page</a> > <a href="javascript:history.back();" style="color:white; font-size:12px;">Results</a> > View Item </div>
+                        
+                        <div class="inner">
+                            
+                            <div class="clearfix">
+                                
+                                
+                                <section class="itemview">
+                                    <!-- <a href="javascript:window.history.back();" class="backbutton secondary">Back</a>-->
+                                    <article class="item-main">
+                        
+                                        <div class="item-content">
+
+                                            <!--SEARCH BOX-->
+                                            <section id="search">
+                                                
+                                                <div class="moduletable_mainsearch">
+                                                    <div>
+                                                        <form action="listing.html" method="get">
+                                                            <div>
+                                                                <input class="search" id="mainsearch" type="text" name="query" class="withplaceholder" placeholder="Search..." />
+                                                            </div>
+                                                            <!--<input type="" value="submit" class="search" id="mainsearch"/>-->
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            <!---end search-->
+                                            
+                                            <!------>
+                                            <div class="leftSidebarInfo">
+                                                
+                                                <ul>
+                                                    <!--<h1>More Info</h1>-->
+                                                    
+                                                    <li class="cleanRow">
+                                    <span class="labels">Language:</span>
+                                    <nav class="inline-nav" id="itemLanguage">
+                                    </nav>
+                                </li>
+                                <li class="cleanRow">
+                                    <span class="labels">Educational Context:</span>
+                                    <nav class="inline-nav" id="itemEducationalContext">
+                                        
+                                    </nav>
+                                </li>
+                                <li class="cleanRow">
+                                    <span class="labels">Resource Type:</span>
+                                    <nav class="inline-nav" id="itemResourceType">
+                                        
+                                    </nav>
+                                </li>
+                                <li class="cleanRow">
+                                    <span class="labels">Intended Audience:</span>
+                                    <nav class="inline-nav" id="itemIntendedAudience">
+                                        
+                                    </nav>
+                                </li>
+                                <li class="cleanRow">
+                                    <span class="labels">Typical Age Range:</span>
+                                    <nav class="inline-nav" id="itemAgeRange">
+                                        
+                                    </nav>
+                                </li>
+                                <li class="cleanRow">
+                                    <span class="labels">Collection:</span>
+                                    <nav class="inline-nav" id="itemCollection">
+                                        
+                                    </nav>
+                                </li>
+                                <li class="cleanRow">
+                                    <span class="labels">Media Format:</span>
+                                    <nav class="inline-nav" id="itemMediaFormat">
+                                        
+                                    </nav>
+                                </li>
+                                                    
+                                                </ul>
+                                            </div>
+                                            
+                                            <!------>
+                                            
+                                            <div class="itemDescription" id="itemDescription">
+                                            
+                                                <ul>
+                                                    <li >
+                                                        <span class="item_label">Title:</span>
+                                                        <span  class="item_value" id="item_title"></span>
+                                                    </li>
+                                                    <li >
+                                                        <span class="item_label">Description:</span>
+                                                        <span  class="item_value" id="item_description"></span>
+                                                    </li>
+                                                    <li >
+                                                        <span class="item_label">Keywords:</span>
+                                                        <span  class="item_value" id="item_keywords"></span>
+                                                    </li>
+                                                    <li >
+                                                        <span class="item_label">Copyrights:</span>
+                                                        <span  class="item_value" id="item_copyrights"></span>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+                                            
+                                            <div id="itemThumb"></div>
+                                        </div>
+                                        
+                                        <div class="floatright" style="width:500px;">
+                                            <div class="floatright" style="margin-right: 15px;" id="itemAccess"></div>
+                                            <div class="floatright"><a href="mailto:info@agroknow.gr?Subject=Green%20Learning%20Network" class="reportaproblem  secondary">Report a problem</a></div>
+                                        </div>
+                                    </article>
+                                    
+                                    <!-- <a href="javascript:window.history.back();" class="backbutton secondary">Back</a>-->
+                                </section>
+                                <div class="clearfix"> </div>
+                                
+                                <!--footer-->
+                                <section class="supporters">
+                                    <div class="inner aligncenter">
+                                        <div class="footer_menu floatleft">
+                                            <img src="style/images/footer_menu_title.png">
+                                                <ul class="">
+                                                    <li><a href="mailto:mtminfo@mttm.hu" >| Contact</a></li>
+                                                    <li><a href="mailto:rajczy@mttm.hu">| Webmaster</a></li>
+                                                    <li><a href="mailto:vasarhelyi@mttm.hu" >| Editor in chief </a></li>
+                                                </ul>
+                                                </div>
+                                        <div class="footer_social floatleft">
+                                            <img src="style/images/footer_social.png">
+                                                
+                                                </div>
+                                        <div class="footer_links floatleft">
+                                            <a href="http://www.natural-europe.eu/el"><img src="style/images/powered_by.png"></a>
+                                            <div>
+                                                <img src="style/images/curated_by.png">
+                                                    <img src="style/images/designed_by.png">
+                                                        </div>
+                                        </div>
+                                        
+                                        <!--<a href="#" class="developed_by">Developed by</a>
+                                         <a href="#" class="operated_by">Operated by</a>
+                                         <a href="#" class="designed_by">Designed by</a>
+                                         <!--<a href="#" class="supported_by">With partial EU funding support from</a>-->
+                                    </div>
+                                </section>
+                                
+                            </div>
+                        </div>
+                        
+
+                        
+                    </section>
+                    
+                    <!-------------------------------------------------------- end item-->
+                
+
+                </div> <!--/#center -->
+                
+            </div> <!-- /container -->
+           
+        </div>
+        </div>
+        <!-- /layout -->
+        
+        <!--javascript--->
+        <script type="text/javascript">
+            
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-42040521-2']);
+            _gaq.push(['_trackPageview']);
+            
+            (function() {
+             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+             })();
+            
+            </script>
+        <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+        
+        
+    </body>
+</html>

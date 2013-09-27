@@ -141,7 +141,6 @@ function initializeFinder(){
 		if(typeof customizeFinder == 'function') {
 			var customParams = customizeFinder();
             var urlSelectedProviders = getUrlVars()["providers"];
-            var urlSelectedLanguage = getUrlVars()["lang"];
             
 			if(customParams) {
                 /*limit collection|providers*/
@@ -150,17 +149,8 @@ function initializeFinder(){
                     //alert(urlSelectedProviders);
                 }
                 if (!urlSelectedProviders && customParams.selectedProviders) SELECTED_PROVIDERS = customParams.selectedProviders;
+                //alert(SELECTED_PROVIDERS);
                 /*---*/
-                
-                
-                /* select language */
-                if(urlSelectedLanguage)
-                {
-                    SELECTED_LANGUAGE = urlSelectedLanguage;
-                }
-                if (!urlSelectedLanguage && customParams.selectedLanguage) SELECTED_LANGUAGE = customParams.selectedLanguage;
-                /*---*/
-                
                 
 				if (customParams.serviceUrl) SERVICE_URL = customParams.serviceUrl;
 				if (customParams.repositoryName) REPOSITORY_NAME = customParams.repositoryName;
@@ -214,7 +204,7 @@ function initializeFinder(){
 		for (var i=0;i<FACET_TOKENS.length;i++)
         {
 			var fn = FACET_TOKENS[i];
-			div.push('<a href="#" id="'+fn+'" onclick="return false;" class="filter_parent"><span data_translation="'+fn+'">'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child" style="display: none; overflow: hidden;height:auto;"></div>');
+			div.push('<a href="#" id="'+fn+'" onclick="return false;" class="filter_parent"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child" style="display: none; overflow: hidden;height:auto;"></div>');
 			
 		}
         
@@ -552,7 +542,7 @@ result.metadata.each(function(item,index){
                   item.format='images/icons/zip.png';
                   else if (item.format.indexOf('audio') != -1)
                   item.format='images/icons/audio.png';
-                  else if ((item.format.indexOf('text') != -1) ||(item.format[0].indexOf('multipart') != -1) )
+                  else if ((item.format.indexOf('text') != -1) ||(item.format.indexOf('multipart') != -1) )
                   item.format='images/icons/text.png';
                   else if ((item.format.indexOf('xml') != -1) )
                   item.format='images/icons/xml.png';
@@ -627,9 +617,7 @@ result.metadata.each(function(item,index){
                   
                   
                   });
-	         
-				  language();
-             
+
 $('search_results_index').show();
 
 var finalNumberResults = ((start + numberResults) < result.nrOfResults)?(start + numberResults):result.nrOfResults;
@@ -821,17 +809,16 @@ Jaml.register('result', function(data){
            if(data.subject!=undefined){
            for(var i=0 , length=data.subject.length; i<length;i++)
            {
-	           if(data.subject[i].lang==SELECTED_LANGUAGE)
-	           {
-		           if(i!==length-1)
-		           {
-		           keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.subject[i].value+"\">&nbsp"+data.subject[i].value+"</a>"
-		           }
-		           else
-		           {
-		           keywordsToEmbed +="<a class=\"secondary last\" href=\"listing.html?query="+data.subject[i].value.split(" ")[0]+"\">&nbsp"+data.subject[i].value+"</a>"
-		           }
-	           }//end lang check
+           if(data.subject[i].lang=='en'){
+           if(i!==length-1)
+           {
+           keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.subject[i].value+"\">&nbsp"+data.subject[i].value+"</a>"
+           }
+           else
+           {
+           keywordsToEmbed +="<a class=\"secondary last\" href=\"listing.html?query="+data.subject[i].value.split(" ")[0]+"\">&nbsp"+data.subject[i].value+"</a>"
+           }
+           }//end lang check
            
            }//end for
            }//end if
@@ -843,9 +830,8 @@ Jaml.register('result', function(data){
            thisTitle=data.title[0].value;
            for(var i=0 , length=data.title.length; i<length;i++)
            {
-           if(data.title[i].lang==SELECTED_LANGUAGE)
-           {
-	           thisTitle = data.title[i].value
+           if(data.title[i].lang=='en'){
+           thisTitle = data.title[i].value
            }//end lang check
            
            }//end for
@@ -855,15 +841,14 @@ Jaml.register('result', function(data){
            var thisDescription = "undefined";
            if(data.description!=undefined)
            {
-	           thisDescription=data.description[0].value;
-	           for(var i=0 , length=data.description.length; i<length;i++)
-	           {
-	           if(data.description[i].lang==SELECTED_LANGUAGE)
-	           {
-		           thisDescription = data.description[i].value
-	           }//end lang check
-	           
-	           }//end for
+           thisDescription=data.description[0].value;
+           for(var i=0 , length=data.description.length; i<length;i++)
+           {
+           if(data.description[i].lang=='en'){
+           thisDescription = data.description[i].value
+           }//end lang check
+           
+           }//end for
            }//end if
            
            var thisRights = data.licenseUri;
@@ -883,7 +868,7 @@ Jaml.register('result', function(data){
                                         div({cls:'language'}, span("Creative commons licence:"), thisRights),
                                         div({cls:'language'}, span("Rights:"), thisRights2),
                                         div({cls:'floatright'},
-                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id+data.id+"&lang="+SELECTED_LANGUAGE , data_translation:'more_info', cls:'moreinfo'}, "More Info")))))))
+                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id, cls:'moreinfo'}, "More Info")))))))
            });
 
 
@@ -904,18 +889,17 @@ Jaml.register('resultwithoutkeywords', function(data){
            if(data.subject!=undefined){
            for(var i=0 , length=data.subject.length; i<length;i++)
            {
-	           if(data.subject[i].lang==SELECTED_LANGUAGE)
-	           {
-		           if(i!==length-1)
-		           {
-			           keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.subject[i].value+"\">&nbsp"+data.subject[i].value+"</a>"
-		           }
-		           else
-		           {
-			           keywordsToEmbed +="<a class=\"secondary last\" href=\"listing.html?query="+data.subject[i].value.split(" ")[0]+"\">&nbsp"+data.subject[i].value+"</a>"
-		           }
-	           }//end lang check
-	           
+           if(data.subject[i].lang=='en'){
+           if(i!==length-1)
+           {
+           keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.subject[i].value+"\">&nbsp"+data.subject[i].value+"</a>"
+           }
+           else
+           {
+           keywordsToEmbed +="<a class=\"secondary last\" href=\"listing.html?query="+data.subject[i].value.split(" ")[0]+"\">&nbsp"+data.subject[i].value+"</a>"
+           }
+           }//end lang check
+           
            }//end for
            }//end if
            
@@ -933,9 +917,8 @@ Jaml.register('resultwithoutkeywords', function(data){
            thisTitle=data.title[0].value;
            for(var i=0 , length=data.title.length; i<length;i++)
            {
-           if(data.title[i].lang==SELECTED_LANGUAGE)
-           {
-	           thisTitle = data.title[i].value
+           if(data.title[i].lang=='en'){
+           thisTitle = data.title[i].value
            }//end lang check
            
            }//end for
@@ -948,9 +931,8 @@ Jaml.register('resultwithoutkeywords', function(data){
            thisDescription=data.description[0].value;
            for(var i=0 , length=data.description.length; i<length;i++)
            {
-           if(data.description[i].lang==SELECTED_LANGUAGE)
-           {
-	           thisDescription = data.description[i].value
+           if(data.description[i].lang=='en'){
+           thisDescription = data.description[i].value
            }//end lang check
            
            }//end for
@@ -964,7 +946,7 @@ Jaml.register('resultwithoutkeywords', function(data){
                           section(p({cls:'item-intro-desc'}, thisDescription),
                                   aside({cls:'clearfix'},
                                         div({cls:'floatright'},
-                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id+data.id+"&lang="+SELECTED_LANGUAGE , data_translation:'more_info', cls:'moreinfo'}, "More Info")))))))});
+                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id, cls:'moreinfo'}, "More Info")))))))});
 
 
 

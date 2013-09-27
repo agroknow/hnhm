@@ -142,6 +142,7 @@ function initializeFinder(){
 		if(typeof customizeFinder == 'function') {
 			var customParams = customizeFinder();
             var urlSelectedProviders = getUrlVars()["providers"];
+            var urlSelectedLanguage = getUrlVars()["lang"];
             
 			if(customParams) {
                 /*limit collection|providers*/
@@ -151,6 +152,14 @@ function initializeFinder(){
                 }
                 if (!urlSelectedProviders && customParams.selectedProviders) SELECTED_PROVIDERS = customParams.selectedProviders;
                 //alert(SELECTED_PROVIDERS);
+                /*---*/
+                
+                /*language selection*/
+                if(urlSelectedLanguage)
+                {
+                    SELECTED_LANGUAGE = urlSelectedLanguage;
+                }
+                if (!urlSelectedLanguage && customParams.selectedLanguage) SELECTED_LANGUAGE = customParams.selectedLanguage;
                 /*---*/
                 
 				if (customParams.serviceUrl) SERVICE_URL = customParams.serviceUrl;
@@ -205,7 +214,7 @@ function initializeFinder(){
 		for (var i=0;i<FACET_TOKENS.length;i++)
         {
 			var fn = FACET_TOKENS[i];
-			div.push('<a href="#" id="'+fn+'" onclick="return false;" class="filter_parent"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child" style="display: none; overflow: hidden;height:auto;"></div>');
+			div.push('<a href="#" id="'+fn+'" onclick="return false;" class="filter_parent"><span data_translation="'+fn+'">'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child" style="display: none; overflow: hidden;height:auto;"></div>');
 			
 		}
         
@@ -591,19 +600,16 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                               }
                               else
                               {
-                              
-                              try {item.keywords = item.keywords.split("&#044; ");} catch(e) {}
-                              
-                               item.isOdd = oddCtr;
-                              
-                              $('search_results').insert(Jaml.render('result',item));
-                              // alert("metaid:" +item.metaMetadataId);
-                              iter++;
+								  try {item.keywords = item.keywords.split("&#044; ");} catch(e) {}
+	                              item.isOdd = oddCtr;
+	                              $('search_results').insert(Jaml.render('result',item));
+	                              iter++;
                               }
 
 
                               });
-                                             
+                              
+                                                              
 			 $('search_results_index').show();
 			 
 			 var finalNumberResults = ((start + numberResults) < result.nrOfResults)?(start + numberResults):result.nrOfResults;
@@ -777,22 +783,9 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                if(data.isOdd%2===1){odd="odd"}
                
                //keywords
-               if(data.subject!=undefined){
-               for(var i=0 , length=data.subject.length; i<length;i++)
-               {
-               if(data.subject[i].lang=='en'){
-               if(i!==length-1)
-               {
-               keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.subject[i].value+"\">&nbsp"+data.subject[i].value+"</a>"
-               }
-               else
-               {
-               keywordsToEmbed +="<a class=\"secondary last\" href=\"listing.html?query="+data.subject[i].value.split(" ")[0]+"\">&nbsp"+data.subject[i].value+"</a>"
-               }
-               }//end lang check
-               
-               }//end for
-               }//end if
+               if(data.keywords!=undefined && data.keywords[0].value!=undefined){
+	              keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.keywords[0].value+"\">&nbsp"+data.keywords[0].value+"</a>"
+		              }//end if
                
 
                
@@ -821,7 +814,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                             div({cls:'language'}, span("Rights:"), thisRights2),
 */
                                             div({cls:'floatright'},
-                                                div({cls:'line alignright'}, a({href:"item.html?id="+id, cls:'moreinfo'}, "More Info")))))))
+                                                div({cls:'line alignright'}, a({href:"item.html?id="+id+"&lang="+SELECTED_LANGUAGE, cls:'moreinfo', data_translation:"more_info"}, "More Info")))))))
                });
  
  
@@ -882,7 +875,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
 										//div({cls:'language'}, span("Creative commons licence:"), thisRights),
 										//div({cls:'language'}, span("Rights:"), thisRights2),
                                             div({cls:'floatright'},
-                                                div({cls:'line alignright'}, a({href:"item.html?id="+id, cls:'moreinfo'}, "More Info")))))))});
+                                                div({cls:'line alignright'}, a({href:"item.html?id="+id+"&lang="+SELECTED_LANGUAGE, cls:'moreinfo', data_translation:"more_info"}, "More Info")))))))});
  
  
 

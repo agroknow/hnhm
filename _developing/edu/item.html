@@ -42,26 +42,18 @@
         <link type="text/css" rel="stylesheet" media="all" href="style/my-style.css" />
         
         <script type="text/javascript" src="js/ariadne-json.js"></script>
-		<!--languages scripts -->
-        <script src="js/language.js"></script>
-        <!--end nhmc-->
-                
-        
+
+                        
         <script type="text/javascript">
             function getItem()
             {
-            	var lang = "en";
-            	if(getUrlVars()["lang"]!=undefined)
-            	{
-	            	lang=getUrlVars()["lang"];
-            	} 
-                getItemJSONP('http://83.212.96.219:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1], lang);
+                getItemJSONP('http://83.212.96.219:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1]);
             }
             </script>
         <!---------------------------------- end item related-->
         
     </head>
-    <body onload="getItem(), language()">
+    <body onload="getItem()">
         
         <!-- Layout -->
         <div id="header-region" class="clear-block"><div id="block-block-3" class="clear-block block block-block">
@@ -210,28 +202,12 @@
                                                         <span  class="item_value" id="item_description"></span>
                                                     </li>
                                                     <li >
-                                                        <span class="item_label">Creator:</span>
-                                                        <span  class="item_value" id="item_creator"></span>
-                                                    </li>
-                                                    <li >
                                                         <span class="item_label">Keywords:</span>
                                                         <span  class="item_value" id="item_keywords"></span>
                                                     </li>
                                                     <li >
-                                                        <span class="item_label">Language:</span>
-                                                        <span  class="item_value" id="item_language"></span>
-                                                    </li>
-                                                    <li >
                                                         <span class="item_label">Copyrights:</span>
                                                         <span  class="item_value" id="item_copyrights"></span>
-                                                    </li>
-                                                    <li >
-                                                        <span class="item_label">Relation:</span>
-                                                        <span  class="item_value" id="item_relation"></span>
-                                                    </li>
-                                                    <li >
-                                                        <span class="item_label">Creative Common License:</span>
-                                                        <span  class="item_value" id="item_common_license"></span>
                                                     </li>
                                                 </ul>
 
