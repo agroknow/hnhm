@@ -48,6 +48,7 @@
             function getItem()
             {
                 getItemJSONP('http://83.212.96.219:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1]);
+/*                 getItemJSONP('http://54.228.180.124:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1]); */
             }
             </script>
         <!---------------------------------- end item related-->
@@ -172,12 +173,14 @@
                                         
                                     </nav>
                                 </li>
+<!--
                                 <li class="cleanRow">
                                     <span class="labels">Collection:</span>
                                     <nav class="inline-nav" id="itemCollection">
                                         
                                     </nav>
                                 </li>
+-->
                                 <li class="cleanRow">
                                     <span class="labels">Media Format:</span>
                                     <nav class="inline-nav" id="itemMediaFormat">
@@ -209,7 +212,14 @@
                                                         <span class="item_label">Copyrights:</span>
                                                         <span  class="item_value" id="item_copyrights"></span>
                                                     </li>
+                                                    <li>
+	                                                    <div id="approved" style="position: relative; top: 7px; visibility:hidden;">
+				                                            <img src="images/approved.png"/>
+				                                            <p id="validator"></p>
+				                                        </div>
+                                                    </li>
                                                 </ul>
+                                                
 
                                             </div>
                                             

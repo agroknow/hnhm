@@ -1333,6 +1333,21 @@ ul.pagination li a.next {
 
 /* ITEM VIEW */
 
+#approved
+{
+	padding:10px 0px;
+}
+#approved img
+{
+	width:70px;
+	float:left;	
+}
+#approved p
+{
+	padding-top: 20px;
+	float:left;	
+}
+
 .labels
 {
 	color:#217F60;
@@ -1494,6 +1509,10 @@ span.etflag {
 	background:url(images/flag_et.png) 0 0 no-repeat;
         text-indent:-9999px;
 }
+span.huflag {
+	background:url(images/flag_hu.jpeg) 0 0 no-repeat;
+        text-indent:-9999px;
+}
 span.roflag {
 	background:url(images/flag_ro.jpg) 0 0 no-repeat;
         text-indent:-9999px;
@@ -1517,10 +1536,10 @@ a.enflag {
 	background:url(images/flag_en.jpg) 0 0 no-repeat;
 }
 a.spflag {
-	background:url(images/flag_en.jpg) 0 0 no-repeat;
+	background:url(images/flag_sp.jpg) 0 0 no-repeat;
 }
 a.itflag {
-	background:url(images/flag_en.jpg) 0 0 no-repeat;
+	background:url(images/flag_it.jpg) 0 0 no-repeat;
 }
 a.grflag {
 	background:url(images/flag_en.jpg) 0 0 no-repeat;
