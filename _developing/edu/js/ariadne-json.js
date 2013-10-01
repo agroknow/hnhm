@@ -43,8 +43,24 @@ jQuery.ajax(
 	        jQuery('#itemAccess').append('<a target="_blank" href="'+arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
         }
         
-        if(arrayWithJSONS[0].expressions[0].manifestations[0].parameter!==undefined)
+        
+        //IF PATHWAY USE THIS ICON ELSE CHOOSE BY TYPE
+        if(arrayWithJSONS[0].tokenBlock.learningResourceTypes!=undefined &&  arrayWithJSONS[0].tokenBlock.learningResourceTypes.length!==undefined)
         {
+        	var ctr=0;//counts if already has append the icon
+            for(var j=0; j<arrayWithJSONS[0].tokenBlock.learningResourceTypes.length;j++)//*ARRAY of keywords in current version
+            {
+                if(arrayWithJSONS[0].tokenBlock.learningResourceTypes[j]=="pathway" && ctr<1)
+                {
+                	ctr=2;
+	                jQuery('#itemThumb').append('<a href="'+arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="images/pathway.jpg" /> </a>');
+                }
+            }
+        }
+        else if(arrayWithJSONS[0].expressions[0]!=undefined)
+        {
+	        if(arrayWithJSONS[0].expressions[0].manifestations[0].parameter!==undefined)
+	        {
 	        if(arrayWithJSONS[0].expressions[0].manifestations[0].parameter=='text/html'){
 	        jQuery('#itemThumb').append('<a href="'+arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="images/no-image.gif" /> </a>');
 	        
@@ -76,11 +92,17 @@ jQuery.ajax(
 	        }
 	        
         }
-        else
-        {
+	        else
+	        {
 	        jQuery('#itemThumb').append('<a href="'+arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="images/no-image.gif" /> </a>');
         
         }
+        }
+        
+        
+        
+        
+        
         
         if(arrayWithJSONS[0].expressions[0].manifestations[0].parameter!==undefined)
         {
@@ -281,8 +303,25 @@ if(arrayWithJSONS[0].contributors != undefined)
 		    jQuery('#itemAccess').append('<a target="_blank" href="'+arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
 	    }
 	    
-	    if(arrayWithJSONS[0].expressions[0].manifestations[0].parameter!==undefined)
-	    {
+	    
+	    
+	    //IF PATHWAY USE THIS ICON ELSE CHOOSE BY TYPE
+        if(arrayWithJSONS[0].tokenBlock.learningResourceTypes!=undefined &&  arrayWithJSONS[0].tokenBlock.learningResourceTypes.length!==undefined)
+        {
+        	var ctr=0;//counts if already has append the icon
+            for(var j=0; j<arrayWithJSONS[0].tokenBlock.learningResourceTypes.length;j++)//*ARRAY of keywords in current version
+            {
+                if(arrayWithJSONS[0].tokenBlock.learningResourceTypes[j]=="pathway" && ctr<1)
+                {
+                	ctr=2;
+	                jQuery('#itemThumb').append('<a href="'+arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="images/pathway.jpg" /> </a>');
+                }
+            }
+        }
+        else if(arrayWithJSONS[0].expressions[0]!=undefined)
+        {
+		    if(arrayWithJSONS[0].expressions[0].manifestations[0].parameter!==undefined)
+		    {
 		    if(arrayWithJSONS[0].expressions[0].manifestations[0].parameter=='text/html')
 		    {
 			    jQuery('#itemThumb').append('<a href="'+arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="images/no-image.gif" /> </a>');
@@ -312,10 +351,12 @@ if(arrayWithJSONS[0].contributors != undefined)
 		    }
 		    
 	    }
-	    else
-	    {
+		    else
+		    {
 		    jQuery('#itemThumb').append('<a href="'+arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="images/no-image.gif" /> </a>');
 	    }
+	    }
+	    
 	    
 	    if(arrayWithJSONS[0].expressions[0].manifestations[0].parameter!==undefined)
 	    {
