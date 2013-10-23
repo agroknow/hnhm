@@ -93,26 +93,31 @@ body:before {
 /*LINK TO GENERAL FINDER*/
 .link_to_general_finder
 {
-	border-top:2px solid white;
-	border-bottom:2px solid white;
 	text-align:center;
-	width:50%;
-	margin:40px auto;
-	margin-top:80px; 
+	width:100%;
+	margin:30px auto;
 	font-size: 1.2em;
+
 }
 
 .link_to_general_finder a
 {
 	font-size: 1.2em;
 	text-decoration: none;
-	color:white;
+	color:#0069be;
+
 }
 
-.link_to_general_finder a:hover
+.link_to_general_finder a img
 {
-	color:#757575;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+	border-radius: 5px;
+	margin-left:20px;
 }
+
 
 /* FOOTER 
 footer#mainfooter
